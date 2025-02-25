@@ -1,0 +1,6 @@
+grpcio>=1.60.0
+grpcio-tools>=1.60.0
+protobuf>=5.26.1
+bcrypt>=4.1.2
+pytest>=8.0.0
+pytest-cov>=4.1.0

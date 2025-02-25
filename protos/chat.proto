@@ -1,0 +1,137 @@
+syntax = "proto3";
+
+package chat;
+
+// Service definition
+service ChatService {
+  // Account Management
+  rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc Logout(LogoutRequest) returns (LogoutResponse) {}
+  rpc ListAccounts(ListAccountsRequest) returns (ListAccountsResponse) {}
+  rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {}
+
+  // Messaging
+  rpc SendMessage(SendMessageRequest) returns (SendMessageResponse) {}
+  rpc GetMessages(GetMessagesRequest) returns (GetMessagesResponse) {}
+  rpc DeleteMessages(DeleteMessagesRequest) returns (DeleteMessagesResponse) {}
+  rpc MarkConversationAsRead(MarkConversationAsReadRequest) returns (MarkConversationAsReadResponse) {}
+}
+
+// Account Management Messages
+message CreateAccountRequest {
+  string username = 1;
+  string password = 2;  // Client should hash password before sending
+}
+
+message CreateAccountResponse {
+  bool success = 1;
+  string error_message = 2;
+}
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;  // Client should hash password before sending
+}
+
+message LoginResponse {
+  bool success = 1;
+  string error_message = 2;
+  int32 unread_message_count = 3;
+  string session_token = 4;  // Token for subsequent requests
+}
+
+message ListAccountsRequest {
+  string pattern = 1;  // Wildcard pattern for filtering accounts
+  int32 page_size = 2;
+  int32 page_number = 3;
+  string session_token = 4;
+}
+
+message ListAccountsResponse {
+  repeated AccountInfo accounts = 1;
+  bool has_more = 2;
+  int32 total_count = 3;
+  string error_message = 4;
+}
+
+message AccountInfo {
+  string username = 1;
+  bool is_online = 2;
+}
+
+message DeleteAccountRequest {
+  string session_token = 1;
+}
+
+message DeleteAccountResponse {
+  bool success = 1;
+  string error_message = 2;
+}
+
+// Messaging Messages
+message SendMessageRequest {
+  string recipient = 1;
+  string content = 2;
+  string session_token = 3;
+}
+
+message SendMessageResponse {
+  bool success = 1;
+  string error_message = 2;
+  string message_id = 3;
+}
+
+message Message {
+  string message_id = 1;
+  string sender = 2;
+  string recipient = 3;
+  string content = 4;
+  int64 timestamp = 5;
+  bool delivered = 6;
+  bool unread = 7;
+  bool deleted = 8;
+}
+
+message GetMessagesRequest {
+  int32 max_messages = 1;  // Number of messages to retrieve
+  string session_token = 2;
+}
+
+message GetMessagesResponse {
+  repeated Message messages = 1;
+  bool has_more = 2;
+  string error_message = 3;
+}
+
+message DeleteMessagesRequest {
+  repeated string message_ids = 1;
+  string session_token = 2;
+}
+
+message DeleteMessagesResponse {
+  bool success = 1;
+  string error_message = 2;
+  repeated string failed_message_ids = 3;  // IDs of messages that couldn't be deleted
+}
+
+// Logout message definitions
+message LogoutRequest {
+  string session_token = 1;
+}
+
+message LogoutResponse {
+  bool success = 1;
+  string error_message = 2;
+}
+
+// Mark conversation as read
+message MarkConversationAsReadRequest {
+  string session_token = 1;
+  string other_user = 2;  // The other user in the conversation
+}
+
+message MarkConversationAsReadResponse {
+  bool success = 1;
+  string error_message = 2;
+}
