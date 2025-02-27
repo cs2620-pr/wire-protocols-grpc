@@ -69,3 +69,6 @@
 2025-02-26 23:21:57,825 - protocol_metrics - INFO - Protocol metrics logging enabled in client
 2025-02-26 23:21:57,930 - client - INFO - Connecting to server at localhost:8000
 2025-02-26 23:21:57,936 - client - INFO - Successfully connected to server at localhost:8000
+2025-02-26 23:22:30,623 - protocol_metrics - INFO - Protocol metrics logging enabled in client
+2025-02-26 23:22:30,726 - client - INFO - Connecting to server at localhost:8000
+2025-02-26 23:22:30,731 - client - INFO - Successfully connected to server at localhost:8000

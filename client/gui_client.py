@@ -1697,7 +1697,7 @@ class ChatApp(QMainWindow):
         if status_bar is not None:
             status_bar.showMessage(f"Logged in as {username}")
 
-    def closeEvent(self, event: QCloseEvent | None) -> None:
+    def closeEvent(self, event: Optional[QCloseEvent]) -> None:
         """Handle window close event."""
         # Only attempt logout if user is logged in
         if hasattr(self, "chat_widget") and self.session_token:

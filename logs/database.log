@@ -543,3 +543,5 @@
 2025-02-26 23:22:16,313 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
 2025-02-26 23:22:16,313 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 14264eef-ec5e-4d26-81e3-f30f271bf436
 2025-02-26 23:22:16,314 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:22:30,731 - INFO - GRPC Incoming - ListAccounts - Size: 17 bytes
+2025-02-26 23:22:30,731 - INFO - GRPC Outgoing - ListAccounts - Size: 28 bytes | Invalid session
