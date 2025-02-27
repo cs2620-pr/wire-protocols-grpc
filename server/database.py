@@ -4,9 +4,17 @@ import bcrypt  # type: ignore
 from typing import List, Optional, Tuple, Dict, Any, Generator, Iterator, cast
 from threading import Lock, local
 from contextlib import contextmanager
-
+import logging
 from .constants import ErrorMessage, SuccessMessage
+from typing import Optional
 
+# Configure logging
+logging.basicConfig(
+    filename="database.log",  # Store logs in a file
+    level=logging.INFO,  # Set log level to INFO
+    format="%(asctime)s - %(levelname)s - %(message)s",
+)
+logger = logging.getLogger("database")
 
 class ChatDatabase:
     def __init__(self, db_path: str = "chat.db") -> None:
@@ -149,7 +157,7 @@ class ChatDatabase:
             return False, str(e)
 
     def list_accounts(
-        self, pattern: str | None = None, limit: int = 50, offset: int = 0
+        self, pattern: Optional[str], limit: int = 50, offset: int = 0
     ) -> List[dict]:
         """List user accounts, optionally filtered by pattern."""
         try:
@@ -200,29 +208,42 @@ class ChatDatabase:
     def send_message(
         self, sender: str, recipient: str, content: str, message_id: str
     ) -> Tuple[bool, str]:
-        """Store a new message."""
+        """Store a new message with logging of message size and status."""
         try:
             with self.get_connection() as conn:
                 cursor: sqlite3.Cursor = conn.cursor()
+
                 # Verify recipient exists
                 cursor.execute("SELECT 1 FROM users WHERE username = ?", (recipient,))
                 if not cursor.fetchone():
+                    logger.warning(f"Message failed: Recipient {recipient} does not exist.")
                     return False, ErrorMessage.RECIPIENT_DELETED.value
 
-                current_time = int(
-                    time.time() * 1000
-                )  # Use milliseconds for better precision
+                # Calculate message size
+                message_size = len(content.encode("utf-8"))
+
+                # Log message details before insertion
+                logger.info(
+                    f"Storing message | Sender: {sender} -> Recipient: {recipient} | Message Size: {message_size} bytes | Message ID: {message_id}"
+                )
+
+                current_time = int(time.time() * 1000)  # Use milliseconds for better precision
                 cursor.execute(
                     """
                     INSERT INTO messages (message_id, sender, recipient, content, timestamp)
                     VALUES (?, ?, ?, ?, ?)
-                """,
+                    """,
                     (message_id, sender, recipient, content, current_time),
                 )
                 conn.commit()
+
+                logger.info(f"Message stored successfully | Message ID: {message_id}")
+
                 return True, SuccessMessage.MESSAGE_SENT.value
         except Exception as e:
+            logger.error(f"Database error while storing message from {sender} to {recipient}: {str(e)}")
             return False, str(e)
+
 
     def get_messages(self, username: str, limit: int = 50) -> List[dict]:
         """Get messages for a user."""

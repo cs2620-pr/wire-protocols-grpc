@@ -56,12 +56,17 @@ from server.chat.chat_pb2_grpc import ChatServiceStub
 from server.constants import ErrorMessage, SuccessMessage
 
 # Configure logging
-logger = logging.getLogger(__name__)
-handler = logging.StreamHandler()
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-handler.setFormatter(formatter)
-logger.addHandler(handler)
-logger.setLevel(logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,  # Set to DEBUG if needed
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("client.log"),  # Save logs to a file
+        logging.StreamHandler()  # Print logs to the console
+    ],
+)
+
+logger = logging.getLogger("client")  # Use a specific logger for clarity
+
 
 # Global settings
 CLIENT_SETTINGS = {
@@ -720,20 +725,28 @@ class ChatWidget(QWidget):
             print(f"Error updating unread counts: {e}")
 
     def update_messages(self) -> None:
-        """Update the messages for the selected user."""
+        """Update the messages for the selected user with logging."""
         try:
-            print(f"Updating messages for selected user: {self.selected_user}")
+            logger.info(f"Updating messages for selected user: {self.selected_user}")
+
             request = GetMessagesRequest(
                 session_token=self.session_token,
                 max_messages=100,  # Get up to 100 messages
             )
+
+            request_size = len(request.SerializeToString())  # Log request size
+            logger.info(f"GRPC Outgoing - GetMessages - Size: {request_size} bytes")
+
             response = self.stub.GetMessages(request)
 
+            response_size = len(response.SerializeToString())  # Log response size
+            logger.info(f"GRPC Incoming - GetMessages Response - Size: {response_size} bytes")
+
             if response.error_message:
-                print(f"Error getting messages: {response.error_message}")
+                logger.warning(f"Error getting messages: {response.error_message}")
                 return
 
-            print(f"Received {len(response.messages)} total messages from server")
+            logger.info(f"Received {len(response.messages)} total messages from server")
 
             # Filter messages for the selected user
             filtered_messages = []
@@ -752,6 +765,7 @@ class ChatWidget(QWidget):
                         msg.deleted = False
 
                     filtered_messages.append(msg)
+
                     # Check if there are any unread messages from the selected user
                     if (
                         msg.sender == self.selected_user
@@ -759,30 +773,29 @@ class ChatWidget(QWidget):
                         and msg.unread
                     ):
                         has_unread = True
-                    print(
-                        f"Including message: {msg.sender} -> {msg.recipient}: {msg.content[:30]}... (deleted: {msg.deleted})"
-                    )
-                else:
-                    print(f"Filtering out message: {msg.sender} -> {msg.recipient}")
 
-            print(
-                f"Filtered to {len(filtered_messages)} messages for conversation with {self.selected_user}"
-            )
+                    logger.debug(f"Including message: {msg.sender} -> {msg.recipient}: {msg.content[:30]}... (deleted: {msg.deleted})")
+                else:
+                    logger.debug(f"Filtering out message: {msg.sender} -> {msg.recipient}")
+
+            logger.info(f"Filtered to {len(filtered_messages)} messages for conversation with {self.selected_user}")
 
             # If there are unread messages and the chat is currently open, mark them as read
             if has_unread and self.selected_user is not None:
+                logger.info(f"Marking conversation as read for {self.selected_user}")
                 self.mark_conversation_as_read(self.selected_user)
 
             # Check if messages have changed before updating display
             if self._messages_changed(filtered_messages):
                 self.messages = filtered_messages
                 self._display_messages()
-                print(f"Updated display with {len(filtered_messages)} messages")
+                logger.info(f"Updated display with {len(filtered_messages)} messages")
             else:
-                print("No changes in messages, skipping display update")
+                logger.info("No changes in messages, skipping display update")
 
         except grpc.RpcError as e:
-            print(f"Error updating messages: {e}")
+            logger.error(f"Error updating messages: {e}")
+
 
     def _messages_changed(self, new_messages: List[Message]) -> bool:
         """Check if the messages have changed."""
@@ -989,11 +1002,10 @@ class ChatWidget(QWidget):
             )
 
     def send_message(self) -> None:
-        """Send a message to the selected user."""
+        """Send a message to the selected user with logging."""
         if not self.selected_user:
-            QMessageBox.warning(
-                self, "No Recipient", "Please select a user to message."
-            )
+            QMessageBox.warning(self, "No Recipient", "Please select a user to message.")
+            logger.warning("Attempted to send a message without selecting a recipient.")
             return
 
         message_text = self.message_input.text().strip()
@@ -1001,22 +1013,30 @@ class ChatWidget(QWidget):
             return
 
         try:
-            print(f"Sending message to {self.selected_user}: {message_text}")
+            logger.info(f"Attempting to send message to {self.selected_user}: {message_text[:50]}{'...' if len(message_text) > 50 else ''}")
+
             request = SendMessageRequest(
                 session_token=self.session_token,
                 recipient=self.selected_user,
                 content=message_text,
             )
+
+            request_size = len(request.SerializeToString())  # Log request size
+            logger.info(f"GRPC Outgoing - SendMessage - Size: {request_size} bytes")
+
             response = self.stub.SendMessage(request)
 
+            response_size = len(response.SerializeToString())  # Log response size
+            logger.info(f"GRPC Incoming - SendMessage Response - Size: {response_size} bytes")
+
             if response.success:
-                print(f"Message sent successfully, message_id: {response.message_id}")
+                logger.info(f"Message sent successfully to {self.selected_user}, message_id: {response.message_id}")
+
                 # Clear input field
                 self.message_input.clear()
 
                 # Force an immediate update and scroll to bottom
                 self.update_messages()
-                # Ensure we scroll to bottom after sending a message
                 QTimer.singleShot(
                     100,
                     lambda: self.messages_area.verticalScrollBar().setValue(
@@ -1024,10 +1044,12 @@ class ChatWidget(QWidget):
                     ),
                 )
             else:
-                print(f"Failed to send message: {response.error_message}")
+                logger.warning(f"Failed to send message to {self.selected_user}: {response.error_message}")
 
                 # Check if the error is because the recipient's account was deleted
                 if "user's account has been deleted" in response.error_message:
+                    logger.warning(f"User '{self.selected_user}' has deleted their account. Cannot send messages.")
+
                     QMessageBox.warning(
                         self,
                         "User Deleted",
@@ -1048,7 +1070,7 @@ class ChatWidget(QWidget):
                     QMessageBox.warning(self, "Send Failed", response.error_message)
 
         except grpc.RpcError as e:
-            print(f"Error sending message: {e}")
+            logger.error(f"GRPC SendMessage Error: {str(e)}")
             QMessageBox.critical(self, "Send Failed", f"Server error: {str(e)}")
 
     def logout(self) -> None:

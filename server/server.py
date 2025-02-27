@@ -35,9 +35,19 @@ from .constants import ErrorMessage, SuccessMessage
 
 # Configure logging
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.INFO,  # Change to DEBUG if you need more details
+    format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+    handlers=[
+        logging.FileHandler("server.log"),  # Save logs to a file
+        logging.StreamHandler()  # Also print logs to the console
+    ],
 )
-logger = logging.getLogger(__name__)
+
+logger = logging.getLogger("server")  # Use a specific logger for clarity
+
+# Capture logs from database.py as well
+logging.getLogger("database").setLevel(logging.INFO)
+
 
 
 class ChatServicer(ChatServiceServicer):
@@ -166,13 +176,20 @@ class ChatServicer(ChatServiceServicer):
         request: SendMessageRequest,
         context: grpc.ServicerContext,
     ) -> SendMessageResponse:
-        """Handle message sending request."""
+        """Handle message sending request with logging."""
+        
+        request_size = len(request.SerializeToString())  # Log request size
+        logger.info(f"GRPC Incoming - SendMessage - Size: {request_size} bytes | Sender: {request.session_token} -> Recipient: {request.recipient}")
+
         # Verify session
         username = self.db.verify_session(request.session_token)
         if not username:
-            return SendMessageResponse(
+            response = SendMessageResponse(
                 success=False, error_message=ErrorMessage.INVALID_SESSION.value
             )
+            response_size = len(response.SerializeToString())  # Log response size
+            logger.info(f"GRPC Outgoing - SendMessage (Error) - Size: {response_size} bytes | Invalid session")
+            return response
 
         # Generate message ID
         message_id = str(uuid.uuid4())
@@ -185,22 +202,34 @@ class ChatServicer(ChatServiceServicer):
             message_id=message_id,
         )
 
-        return SendMessageResponse(
+        response = SendMessageResponse(
             success=success,
             error_message=message if not success else "",
             message_id=message_id if success else "",
         )
+
+        response_size = len(response.SerializeToString())  # Log response size
+        logger.info(f"GRPC Outgoing - SendMessage - Size: {response_size} bytes | Success: {success}")
+
+        return response
 
     def GetMessages(
         self,
         request: GetMessagesRequest,
         context: grpc.ServicerContext,
     ) -> GetMessagesResponse:
-        """Handle message retrieval request."""
+        """Handle message retrieval request with logging."""
+        
+        request_size = len(request.SerializeToString())  # Log request size
+        logger.info(f"GRPC Incoming - GetMessages - Size: {request_size} bytes | Session Token: {request.session_token}")
+
         # Verify session
         username = self.db.verify_session(request.session_token)
         if not username:
-            return GetMessagesResponse(error_message=ErrorMessage.INVALID_SESSION.value)
+            response = GetMessagesResponse(error_message=ErrorMessage.INVALID_SESSION.value)
+            response_size = len(response.SerializeToString())  # Log response size
+            logger.info(f"GRPC Outgoing - GetMessages (Error) - Size: {response_size} bytes | Invalid session")
+            return response
 
         # Get messages
         messages = self.db.get_messages(username=username, limit=request.max_messages)
@@ -212,7 +241,6 @@ class ChatServicer(ChatServiceServicer):
         conversation_partners = set()
 
         for msg in messages:
-            # Add to message protos
             message_protos.append(
                 Message(
                     message_id=msg["message_id"],
@@ -232,11 +260,16 @@ class ChatServicer(ChatServiceServicer):
             if msg["recipient"] != username:
                 conversation_partners.add(msg["recipient"])
 
-        return GetMessagesResponse(
+        response = GetMessagesResponse(
             messages=message_protos,
             has_more=len(messages) == request.max_messages,
             error_message="",
         )
+
+        response_size = len(response.SerializeToString())  # Log response size
+        logger.info(f"GRPC Outgoing - GetMessages - Size: {response_size} bytes | Retrieved {len(messages)} messages")
+
+        return response
 
     def DeleteMessages(
         self,
