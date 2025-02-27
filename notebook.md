@@ -1,17 +1,20 @@
-**Engineering Notebook Entry: Re-Implementing the Chat Application with gRPC**
+**Engineering Notebook Entry: Re-Implementing our Chat Application with gRPC**
+
+*by Pranav Ramesh and Mohamed Zidan Cassim*
 
 ---
 
 ### Objective
-The goal of this exercise is to re-implement the previously designed chat application, replacing the use of sockets and a custom wire protocol/JSON with gRPC. This document examines the impact of this transition on application complexity, data size, client and server architecture, and testing.
+The goal of this exercise is to re-implement our previously designed chat application, by replacing the use of sockets and our custom wire protocol/JSON with a gRPC implementation. This document examines the impact of this transition on application complexity, data size, client and server architecture, and testing.
 
 ---
 
 ### Implementation Approach
 
 #### 1. Migration from Sockets to gRPC
+- Our original implementation used broadcasting, and we quickly realized that gRPC is primarily used for polling. However, we had also implemented polling in a previous iteration before deciding that broadcasting was a better design choice, and were able to refer back to and utilize some aspects of this implementation.
 - The original implementation utilized raw sockets and JSON for message serialization.
-- gRPC replaces this with Remote Procedure Calls (RPC) over HTTP/2, leveraging Protocol Buffers (Protobuf) for data serialization.
+- gRPC replaces this with Remote Procedure Calls (RPC) over HTTP/2, leveraging Protocol Buffers (protobuf) for data serialization.
 - Instead of handling low-level socket programming, the application now defines service contracts via Protobuf and auto-generates client and server stubs.
 
 #### 2. Changes to Client and Server Structure

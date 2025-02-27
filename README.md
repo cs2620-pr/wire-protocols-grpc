@@ -204,7 +204,3 @@ python -m pytest --cov=server --cov=client
   ```
   chmod +x compile_proto.sh
   ```
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
