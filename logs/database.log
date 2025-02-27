@@ -545,3 +545,935 @@
 2025-02-26 23:22:16,314 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
 2025-02-26 23:22:30,731 - INFO - GRPC Incoming - ListAccounts - Size: 17 bytes
 2025-02-26 23:22:30,731 - INFO - GRPC Outgoing - ListAccounts - Size: 28 bytes | Invalid session
+2025-02-26 23:24:30,958 - INFO - Shutting down server...
+2025-02-26 23:24:39,042 - INFO - Protocol metrics logging enabled in ChatServicer
+2025-02-26 23:24:39,044 - INFO - Server started on 127.0.0.1:8000
+2025-02-26 23:25:53,886 - INFO - Shutting down server...
+2025-02-26 23:25:58,089 - INFO - Protocol metrics logging enabled in ChatServicer
+2025-02-26 23:25:58,095 - INFO - Server started on localhost:8000
+2025-02-26 23:27:07,515 - INFO - GRPC Incoming - ListAccounts - Size: 17 bytes
+2025-02-26 23:27:07,515 - INFO - GRPC Outgoing - ListAccounts - Size: 28 bytes | Invalid session
+2025-02-26 23:27:10,445 - INFO - Login attempt for user: pr28416
+2025-02-26 23:27:10,445 - INFO - GRPC Incoming - Login - Size: 12 bytes | Username: pr28416
+2025-02-26 23:27:10,698 - INFO - GRPC Outgoing - Login - Size: 40 bytes | Success, unread: 0
+2025-02-26 23:27:11,763 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:11,766 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
+2025-02-26 23:27:11,769 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:11,769 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:12,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:12,807 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
+2025-02-26 23:27:12,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:12,808 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:13,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:13,806 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
+2025-02-26 23:27:13,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:13,807 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:14,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:14,806 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
+2025-02-26 23:27:14,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:14,807 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:15,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:15,809 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
+2025-02-26 23:27:15,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:15,811 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:16,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:16,808 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
+2025-02-26 23:27:16,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:16,810 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:17,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:17,809 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
+2025-02-26 23:27:17,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:17,811 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:18,453 - INFO - GRPC Incoming - ListAccounts - Size: 17 bytes
+2025-02-26 23:27:18,454 - INFO - GRPC Outgoing - ListAccounts - Size: 28 bytes | Invalid session
+2025-02-26 23:27:18,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:18,806 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
+2025-02-26 23:27:18,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:18,806 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:19,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:19,806 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
+2025-02-26 23:27:19,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:19,809 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:20,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:20,807 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
+2025-02-26 23:27:20,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:20,807 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:21,422 - INFO - Login attempt for user: mzcassim
+2025-02-26 23:27:21,422 - INFO - GRPC Incoming - Login - Size: 13 bytes | Username: mzcassim
+2025-02-26 23:27:21,722 - INFO - GRPC Outgoing - Login - Size: 42 bytes | Success, unread: 2
+2025-02-26 23:27:21,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:21,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:21,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:21,806 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:22,781 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:22,781 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:22,782 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:22,784 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:22,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:22,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:22,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:22,807 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:23,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:23,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:23,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:23,811 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:23,812 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:23,812 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:23,812 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:23,812 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:24,587 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 41 bytes
+2025-02-26 23:27:24,587 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:24,588 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:24,588 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:24,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:24,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:24,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:24,810 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:24,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:24,811 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:24,811 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:24,811 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:24,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:24,812 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:25,076 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 44 bytes
+2025-02-26 23:27:25,077 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:25,077 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:25,078 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:25,360 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 45 bytes
+2025-02-26 23:27:25,361 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:25,362 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:25,362 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:25,671 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 42 bytes
+2025-02-26 23:27:25,674 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:25,675 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:25,676 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:25,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:25,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:25,810 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:25,810 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:25,811 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:25,811 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:25,811 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:25,812 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:25,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:25,812 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:25,984 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 44 bytes
+2025-02-26 23:27:25,985 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:25,986 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:25,987 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:26,619 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 44 bytes
+2025-02-26 23:27:26,619 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:26,620 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:26,620 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:26,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:26,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:26,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:26,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:26,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:26,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:26,808 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:26,809 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:26,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:26,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:26,810 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:26,810 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:26,951 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 42 bytes
+2025-02-26 23:27:26,951 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:26,952 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:26,952 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:27,283 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 45 bytes
+2025-02-26 23:27:27,283 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:27,284 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:27,284 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:27,618 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 41 bytes
+2025-02-26 23:27:27,618 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:27,619 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:27,620 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:27,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:27,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:27,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:27,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:27,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:27,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:27,809 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:27,810 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:27,810 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:27,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:27,811 - INFO - GRPC Outgoing - GetMessages - Size: 1492 bytes | Retrieved 19 messages
+2025-02-26 23:27:27,811 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:28,036 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 44 bytes
+2025-02-26 23:27:28,036 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:28,037 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:28,037 - INFO - GRPC Outgoing - GetMessages - Size: 1288 bytes | Retrieved 16 messages
+2025-02-26 23:27:28,435 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 47 bytes
+2025-02-26 23:27:28,437 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:28,438 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:28,438 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:28,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:28,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:28,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:28,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:28,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:28,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:28,810 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:28,811 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:28,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:28,812 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:28,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:28,812 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:29,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:29,805 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:29,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:29,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:29,806 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:29,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:29,807 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:29,808 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:29,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:29,808 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:29,808 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:29,809 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:30,310 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 44 bytes
+2025-02-26 23:27:30,310 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:30,311 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:30,311 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:30,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:30,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:30,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:30,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:30,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:30,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:30,810 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:30,810 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:30,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:30,811 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:30,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:30,812 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:31,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:31,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:31,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:31,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:31,811 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:31,811 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:31,812 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:31,812 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:31,813 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:31,814 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:31,814 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:31,814 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:31,937 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 47 bytes
+2025-02-26 23:27:31,937 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:31,942 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:31,942 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:32,567 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 48 bytes
+2025-02-26 23:27:32,567 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:32,568 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:32,568 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:32,810 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:32,810 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:32,810 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:32,811 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:32,811 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:32,811 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:32,811 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:32,812 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:32,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:32,812 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:32,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:32,813 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:33,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:33,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:33,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:33,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:33,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:33,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:33,810 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:33,811 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:33,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:33,811 - INFO - GRPC Outgoing - GetMessages - Size: 1488 bytes | Retrieved 19 messages
+2025-02-26 23:27:33,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:33,812 - INFO - GRPC Outgoing - GetMessages - Size: 1284 bytes | Retrieved 16 messages
+2025-02-26 23:27:34,203 - INFO - GRPC Incoming - SendMessage - Size: 56 bytes | Sender: 2ab0798e-c780-4f70-b64a-95bf6bedaad6 -> Recipient: mzcassim
+2025-02-26 23:27:34,203 - INFO - Storing message | Sender: pr28416 -> Recipient: mzcassim | Message Size: 6 bytes | Message ID: 880202d8-b922-4ad5-a0c1-200bf9e5b745
+2025-02-26 23:27:34,205 - INFO - Message stored successfully | Message ID: 880202d8-b922-4ad5-a0c1-200bf9e5b745
+2025-02-26 23:27:34,206 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:34,207 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:34,207 - INFO - GRPC Outgoing - GetMessages - Size: 1566 bytes | Retrieved 20 messages
+2025-02-26 23:27:34,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:34,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:34,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:34,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:34,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:34,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:34,810 - INFO - GRPC Outgoing - GetMessages - Size: 1566 bytes | Retrieved 20 messages
+2025-02-26 23:27:34,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:34,811 - INFO - GRPC Outgoing - GetMessages - Size: 1362 bytes | Retrieved 17 messages
+2025-02-26 23:27:34,812 - INFO - GRPC Outgoing - GetMessages - Size: 1566 bytes | Retrieved 20 messages
+2025-02-26 23:27:34,813 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:34,813 - INFO - GRPC Outgoing - GetMessages - Size: 1362 bytes | Retrieved 17 messages
+2025-02-26 23:27:34,814 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 47 bytes
+2025-02-26 23:27:34,814 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:34,897 - INFO - GRPC Incoming - SendMessage - Size: 56 bytes | Sender: 2ab0798e-c780-4f70-b64a-95bf6bedaad6 -> Recipient: mzcassim
+2025-02-26 23:27:34,897 - INFO - Storing message | Sender: pr28416 -> Recipient: mzcassim | Message Size: 6 bytes | Message ID: 17c1e77d-cab8-4b6c-a1b7-691659ce014c
+2025-02-26 23:27:34,898 - INFO - Message stored successfully | Message ID: 17c1e77d-cab8-4b6c-a1b7-691659ce014c
+2025-02-26 23:27:34,898 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:34,899 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:34,899 - INFO - GRPC Outgoing - GetMessages - Size: 1642 bytes | Retrieved 21 messages
+2025-02-26 23:27:35,450 - INFO - GRPC Incoming - SendMessage - Size: 56 bytes | Sender: 2ab0798e-c780-4f70-b64a-95bf6bedaad6 -> Recipient: mzcassim
+2025-02-26 23:27:35,450 - INFO - Storing message | Sender: pr28416 -> Recipient: mzcassim | Message Size: 6 bytes | Message ID: a0dc3ae0-2a60-4e65-8f42-5a9e74589276
+2025-02-26 23:27:35,452 - INFO - Message stored successfully | Message ID: a0dc3ae0-2a60-4e65-8f42-5a9e74589276
+2025-02-26 23:27:35,452 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:35,453 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:35,453 - INFO - GRPC Outgoing - GetMessages - Size: 1720 bytes | Retrieved 22 messages
+2025-02-26 23:27:35,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:35,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:35,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:35,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:35,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:35,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:35,811 - INFO - GRPC Outgoing - GetMessages - Size: 1720 bytes | Retrieved 22 messages
+2025-02-26 23:27:35,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:35,812 - INFO - GRPC Outgoing - GetMessages - Size: 1516 bytes | Retrieved 19 messages
+2025-02-26 23:27:35,813 - INFO - GRPC Outgoing - GetMessages - Size: 1720 bytes | Retrieved 22 messages
+2025-02-26 23:27:35,813 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:35,814 - INFO - GRPC Outgoing - GetMessages - Size: 1516 bytes | Retrieved 19 messages
+2025-02-26 23:27:35,814 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 47 bytes
+2025-02-26 23:27:35,815 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:36,427 - INFO - GRPC Incoming - SendMessage - Size: 56 bytes | Sender: 2ab0798e-c780-4f70-b64a-95bf6bedaad6 -> Recipient: mzcassim
+2025-02-26 23:27:36,428 - INFO - Storing message | Sender: pr28416 -> Recipient: mzcassim | Message Size: 6 bytes | Message ID: c29ad38e-7f56-416a-a49c-1772512fb2d3
+2025-02-26 23:27:36,429 - INFO - Message stored successfully | Message ID: c29ad38e-7f56-416a-a49c-1772512fb2d3
+2025-02-26 23:27:36,429 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:36,430 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:36,430 - INFO - GRPC Outgoing - GetMessages - Size: 1794 bytes | Retrieved 23 messages
+2025-02-26 23:27:36,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:36,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:36,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:36,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:36,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:36,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:36,812 - INFO - GRPC Outgoing - GetMessages - Size: 1590 bytes | Retrieved 20 messages
+2025-02-26 23:27:36,812 - INFO - GRPC Outgoing - GetMessages - Size: 1794 bytes | Retrieved 23 messages
+2025-02-26 23:27:36,813 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:36,814 - INFO - GRPC Outgoing - GetMessages - Size: 1794 bytes | Retrieved 23 messages
+2025-02-26 23:27:36,814 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:36,814 - INFO - GRPC Outgoing - GetMessages - Size: 1590 bytes | Retrieved 20 messages
+2025-02-26 23:27:36,815 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 47 bytes
+2025-02-26 23:27:36,816 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:37,550 - INFO - GRPC Incoming - SendMessage - Size: 55 bytes | Sender: c0be01d4-78a8-4ec9-ac4b-03744fce42e8 -> Recipient: pr28416
+2025-02-26 23:27:37,551 - INFO - Storing message | Sender: mzcassim -> Recipient: pr28416 | Message Size: 6 bytes | Message ID: 778a6517-5501-4316-841a-a5347ef22646
+2025-02-26 23:27:37,552 - INFO - Message stored successfully | Message ID: 778a6517-5501-4316-841a-a5347ef22646
+2025-02-26 23:27:37,552 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:37,553 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:37,553 - INFO - GRPC Outgoing - GetMessages - Size: 1666 bytes | Retrieved 21 messages
+2025-02-26 23:27:37,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:37,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:37,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:37,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:37,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:37,811 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:37,812 - INFO - GRPC Outgoing - GetMessages - Size: 1870 bytes | Retrieved 24 messages
+2025-02-26 23:27:37,812 - INFO - GRPC Outgoing - GetMessages - Size: 1666 bytes | Retrieved 21 messages
+2025-02-26 23:27:37,813 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:37,813 - INFO - GRPC Outgoing - GetMessages - Size: 1870 bytes | Retrieved 24 messages
+2025-02-26 23:27:37,814 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:37,814 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 48 bytes
+2025-02-26 23:27:37,814 - INFO - GRPC Outgoing - GetMessages - Size: 1666 bytes | Retrieved 21 messages
+2025-02-26 23:27:37,815 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:38,287 - INFO - GRPC Incoming - SendMessage - Size: 55 bytes | Sender: c0be01d4-78a8-4ec9-ac4b-03744fce42e8 -> Recipient: pr28416
+2025-02-26 23:27:38,287 - INFO - Storing message | Sender: mzcassim -> Recipient: pr28416 | Message Size: 6 bytes | Message ID: 1fb5d238-bb1c-42e3-87f4-820f96e6f48b
+2025-02-26 23:27:38,288 - INFO - Message stored successfully | Message ID: 1fb5d238-bb1c-42e3-87f4-820f96e6f48b
+2025-02-26 23:27:38,289 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:38,290 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:38,290 - INFO - GRPC Outgoing - GetMessages - Size: 1742 bytes | Retrieved 22 messages
+2025-02-26 23:27:38,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:38,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:38,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:38,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:38,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:38,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:38,808 - INFO - GRPC Outgoing - GetMessages - Size: 1946 bytes | Retrieved 25 messages
+2025-02-26 23:27:38,808 - INFO - GRPC Outgoing - GetMessages - Size: 1742 bytes | Retrieved 22 messages
+2025-02-26 23:27:38,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:38,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:38,809 - INFO - GRPC Outgoing - GetMessages - Size: 1742 bytes | Retrieved 22 messages
+2025-02-26 23:27:38,810 - INFO - GRPC Outgoing - GetMessages - Size: 1946 bytes | Retrieved 25 messages
+2025-02-26 23:27:38,811 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 48 bytes
+2025-02-26 23:27:38,812 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:38,881 - INFO - GRPC Incoming - SendMessage - Size: 55 bytes | Sender: c0be01d4-78a8-4ec9-ac4b-03744fce42e8 -> Recipient: pr28416
+2025-02-26 23:27:38,881 - INFO - Storing message | Sender: mzcassim -> Recipient: pr28416 | Message Size: 6 bytes | Message ID: b7f35221-a79f-43dc-894b-8a4d9b0cbf33
+2025-02-26 23:27:38,882 - INFO - Message stored successfully | Message ID: b7f35221-a79f-43dc-894b-8a4d9b0cbf33
+2025-02-26 23:27:38,882 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:38,883 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:38,883 - INFO - GRPC Outgoing - GetMessages - Size: 1818 bytes | Retrieved 23 messages
+2025-02-26 23:27:39,448 - INFO - GRPC Incoming - SendMessage - Size: 55 bytes | Sender: c0be01d4-78a8-4ec9-ac4b-03744fce42e8 -> Recipient: pr28416
+2025-02-26 23:27:39,449 - INFO - Storing message | Sender: mzcassim -> Recipient: pr28416 | Message Size: 6 bytes | Message ID: b85c93a0-b3d7-435d-a559-bd4bc739e914
+2025-02-26 23:27:39,450 - INFO - Message stored successfully | Message ID: b85c93a0-b3d7-435d-a559-bd4bc739e914
+2025-02-26 23:27:39,450 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:39,451 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:39,451 - INFO - GRPC Outgoing - GetMessages - Size: 1896 bytes | Retrieved 24 messages
+2025-02-26 23:27:39,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:39,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:39,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:39,811 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:39,812 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:39,812 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:39,814 - INFO - GRPC Outgoing - GetMessages - Size: 2100 bytes | Retrieved 27 messages
+2025-02-26 23:27:39,814 - INFO - GRPC Outgoing - GetMessages - Size: 1896 bytes | Retrieved 24 messages
+2025-02-26 23:27:39,815 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:39,815 - INFO - GRPC Outgoing - GetMessages - Size: 1896 bytes | Retrieved 24 messages
+2025-02-26 23:27:39,816 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:39,816 - INFO - GRPC Outgoing - GetMessages - Size: 2100 bytes | Retrieved 27 messages
+2025-02-26 23:27:39,817 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 48 bytes
+2025-02-26 23:27:39,818 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:40,095 - INFO - GRPC Incoming - SendMessage - Size: 55 bytes | Sender: c0be01d4-78a8-4ec9-ac4b-03744fce42e8 -> Recipient: pr28416
+2025-02-26 23:27:40,096 - INFO - Storing message | Sender: mzcassim -> Recipient: pr28416 | Message Size: 6 bytes | Message ID: 47e332c1-92aa-4667-a7f0-df85d2282038
+2025-02-26 23:27:40,097 - INFO - Message stored successfully | Message ID: 47e332c1-92aa-4667-a7f0-df85d2282038
+2025-02-26 23:27:40,098 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:40,099 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:40,099 - INFO - GRPC Outgoing - GetMessages - Size: 1970 bytes | Retrieved 25 messages
+2025-02-26 23:27:40,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:40,805 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:40,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:40,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:40,807 - INFO - GRPC Outgoing - GetMessages - Size: 2174 bytes | Retrieved 28 messages
+2025-02-26 23:27:40,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:40,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:40,808 - INFO - GRPC Outgoing - GetMessages - Size: 1970 bytes | Retrieved 25 messages
+2025-02-26 23:27:40,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:40,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:40,809 - INFO - GRPC Outgoing - GetMessages - Size: 2174 bytes | Retrieved 28 messages
+2025-02-26 23:27:40,810 - INFO - GRPC Outgoing - GetMessages - Size: 1970 bytes | Retrieved 25 messages
+2025-02-26 23:27:40,810 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 48 bytes
+2025-02-26 23:27:40,811 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:41,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:41,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:41,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:41,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:41,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:41,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:41,809 - INFO - GRPC Outgoing - GetMessages - Size: 2172 bytes | Retrieved 28 messages
+2025-02-26 23:27:41,810 - INFO - GRPC Outgoing - GetMessages - Size: 1968 bytes | Retrieved 25 messages
+2025-02-26 23:27:41,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:41,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:41,812 - INFO - GRPC Outgoing - GetMessages - Size: 2172 bytes | Retrieved 28 messages
+2025-02-26 23:27:41,812 - INFO - GRPC Outgoing - GetMessages - Size: 1968 bytes | Retrieved 25 messages
+2025-02-26 23:27:42,179 - INFO - GRPC Incoming - SendMessage - Size: 59 bytes | Sender: 2ab0798e-c780-4f70-b64a-95bf6bedaad6 -> Recipient: mzcassim
+2025-02-26 23:27:42,179 - INFO - Storing message | Sender: pr28416 -> Recipient: mzcassim | Message Size: 9 bytes | Message ID: 06630ca0-96b7-4988-9007-2af5ab93aefa
+2025-02-26 23:27:42,181 - INFO - Message stored successfully | Message ID: 06630ca0-96b7-4988-9007-2af5ab93aefa
+2025-02-26 23:27:42,181 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:42,181 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:42,182 - INFO - GRPC Outgoing - GetMessages - Size: 2253 bytes | Retrieved 29 messages
+2025-02-26 23:27:42,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:42,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:42,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:42,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:42,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:42,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:42,809 - INFO - GRPC Outgoing - GetMessages - Size: 2049 bytes | Retrieved 26 messages
+2025-02-26 23:27:42,809 - INFO - GRPC Outgoing - GetMessages - Size: 2253 bytes | Retrieved 29 messages
+2025-02-26 23:27:42,810 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:42,810 - INFO - GRPC Outgoing - GetMessages - Size: 2253 bytes | Retrieved 29 messages
+2025-02-26 23:27:42,810 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:42,811 - INFO - GRPC Outgoing - GetMessages - Size: 2049 bytes | Retrieved 26 messages
+2025-02-26 23:27:42,811 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 47 bytes
+2025-02-26 23:27:42,812 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:43,023 - INFO - GRPC Incoming - SendMessage - Size: 53 bytes | Sender: 2ab0798e-c780-4f70-b64a-95bf6bedaad6 -> Recipient: mzcassim
+2025-02-26 23:27:43,024 - INFO - Storing message | Sender: pr28416 -> Recipient: mzcassim | Message Size: 3 bytes | Message ID: 0cfac139-0c4a-474b-b187-96ef3e32e7b3
+2025-02-26 23:27:43,025 - INFO - Message stored successfully | Message ID: 0cfac139-0c4a-474b-b187-96ef3e32e7b3
+2025-02-26 23:27:43,025 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:43,026 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:43,026 - INFO - GRPC Outgoing - GetMessages - Size: 2326 bytes | Retrieved 30 messages
+2025-02-26 23:27:43,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:43,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:43,811 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:43,812 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:43,812 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:43,813 - INFO - GRPC Outgoing - GetMessages - Size: 2326 bytes | Retrieved 30 messages
+2025-02-26 23:27:43,814 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:43,815 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:43,816 - INFO - GRPC Outgoing - GetMessages - Size: 2122 bytes | Retrieved 27 messages
+2025-02-26 23:27:43,816 - INFO - GRPC Outgoing - GetMessages - Size: 2326 bytes | Retrieved 30 messages
+2025-02-26 23:27:43,817 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:43,818 - INFO - GRPC Outgoing - GetMessages - Size: 2122 bytes | Retrieved 27 messages
+2025-02-26 23:27:43,818 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 47 bytes
+2025-02-26 23:27:43,819 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:44,592 - INFO - GRPC Incoming - SendMessage - Size: 55 bytes | Sender: c0be01d4-78a8-4ec9-ac4b-03744fce42e8 -> Recipient: pr28416
+2025-02-26 23:27:44,593 - INFO - Storing message | Sender: mzcassim -> Recipient: pr28416 | Message Size: 6 bytes | Message ID: 3104f74b-8cc1-4e0d-8cea-192fc7e1e69d
+2025-02-26 23:27:44,594 - INFO - Message stored successfully | Message ID: 3104f74b-8cc1-4e0d-8cea-192fc7e1e69d
+2025-02-26 23:27:44,594 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:44,595 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:44,596 - INFO - GRPC Outgoing - GetMessages - Size: 2198 bytes | Retrieved 28 messages
+2025-02-26 23:27:44,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:44,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:44,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:44,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:44,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:44,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:44,811 - INFO - GRPC Outgoing - GetMessages - Size: 2402 bytes | Retrieved 31 messages
+2025-02-26 23:27:44,811 - INFO - GRPC Outgoing - GetMessages - Size: 2198 bytes | Retrieved 28 messages
+2025-02-26 23:27:44,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:44,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:44,813 - INFO - GRPC Outgoing - GetMessages - Size: 2402 bytes | Retrieved 31 messages
+2025-02-26 23:27:44,813 - INFO - GRPC Outgoing - GetMessages - Size: 2198 bytes | Retrieved 28 messages
+2025-02-26 23:27:44,813 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 48 bytes
+2025-02-26 23:27:44,814 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:45,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:45,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:45,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:45,810 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:45,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:45,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:45,811 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:45,811 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:45,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:45,811 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:45,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:45,812 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:46,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:46,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:46,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:46,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:46,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:46,807 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:46,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:46,807 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:46,807 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:46,807 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:46,808 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:46,808 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:47,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:47,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:47,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:47,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:47,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:47,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:47,810 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:47,811 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:47,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:47,811 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:47,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:47,812 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:48,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:48,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:48,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:48,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:48,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:48,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:48,810 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:48,811 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:48,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:48,811 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:48,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:48,812 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:49,804 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:49,805 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:49,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:49,805 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:49,805 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:49,806 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:49,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:49,806 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:49,807 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:49,807 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:49,807 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:49,808 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:50,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:50,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:50,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:50,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:50,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:50,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:50,808 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:50,808 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:50,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:50,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:50,810 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:50,810 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:51,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:51,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:51,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:51,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:51,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:51,809 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:51,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:51,809 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:51,810 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:51,810 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:51,810 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:51,810 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:52,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:52,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:52,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:52,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:52,812 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:52,814 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:52,819 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:52,820 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:52,823 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:52,824 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:52,824 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:52,825 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:53,711 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 44 bytes
+2025-02-26 23:27:53,711 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:53,712 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:53,712 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:53,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:53,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:53,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:53,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:53,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:53,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:53,811 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:53,811 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:53,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:53,812 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:53,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:53,812 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:54,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:54,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:54,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:54,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:54,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:54,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:54,807 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:54,808 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:54,808 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:54,808 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:54,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:54,809 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:55,558 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 41 bytes
+2025-02-26 23:27:55,558 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:55,559 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:55,559 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:55,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:55,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:55,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:55,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:55,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:55,808 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:55,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:55,808 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:55,808 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:55,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:55,809 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:55,810 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:56,215 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 47 bytes
+2025-02-26 23:27:56,215 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:27:56,216 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:56,216 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:56,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:56,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:56,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:56,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:56,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:56,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:56,810 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:56,810 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:56,810 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:56,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:56,811 - INFO - GRPC Outgoing - GetMessages - Size: 2400 bytes | Retrieved 31 messages
+2025-02-26 23:27:56,811 - INFO - GRPC Outgoing - GetMessages - Size: 2196 bytes | Retrieved 28 messages
+2025-02-26 23:27:57,540 - INFO - GRPC Incoming - SendMessage - Size: 55 bytes | Sender: c0be01d4-78a8-4ec9-ac4b-03744fce42e8 -> Recipient: pr28416
+2025-02-26 23:27:57,541 - INFO - Storing message | Sender: mzcassim -> Recipient: pr28416 | Message Size: 6 bytes | Message ID: 86f608a1-08b2-413c-a996-579879d0b5b0
+2025-02-26 23:27:57,542 - INFO - Message stored successfully | Message ID: 86f608a1-08b2-413c-a996-579879d0b5b0
+2025-02-26 23:27:57,542 - INFO - GRPC Outgoing - SendMessage - Size: 40 bytes | Success: True
+2025-02-26 23:27:57,543 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:57,543 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:27:57,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:57,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:57,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:57,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:57,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:57,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:57,809 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:27:57,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:57,810 - INFO - GRPC Outgoing - GetMessages - Size: 2478 bytes | Retrieved 32 messages
+2025-02-26 23:27:57,811 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:27:57,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:57,812 - INFO - GRPC Outgoing - GetMessages - Size: 2478 bytes | Retrieved 32 messages
+2025-02-26 23:27:58,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:58,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:58,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:58,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:58,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:58,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:58,810 - INFO - GRPC Outgoing - GetMessages - Size: 2478 bytes | Retrieved 32 messages
+2025-02-26 23:27:58,811 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:27:58,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:58,811 - INFO - GRPC Outgoing - GetMessages - Size: 2478 bytes | Retrieved 32 messages
+2025-02-26 23:27:58,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:58,812 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:27:59,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:59,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:27:59,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:59,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:27:59,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:59,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:59,807 - INFO - GRPC Outgoing - GetMessages - Size: 2478 bytes | Retrieved 32 messages
+2025-02-26 23:27:59,808 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:27:59,808 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:27:59,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:27:59,809 - INFO - GRPC Outgoing - GetMessages - Size: 2478 bytes | Retrieved 32 messages
+2025-02-26 23:27:59,809 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:28:00,412 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 41 bytes
+2025-02-26 23:28:00,412 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:28:00,412 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:00,413 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:28:00,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:00,805 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:00,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:00,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:00,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:00,808 - INFO - GRPC Outgoing - GetMessages - Size: 2478 bytes | Retrieved 32 messages
+2025-02-26 23:28:00,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:00,809 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:28:00,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:00,810 - INFO - GRPC Outgoing - GetMessages - Size: 2478 bytes | Retrieved 32 messages
+2025-02-26 23:28:00,810 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:00,811 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:28:01,352 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 44 bytes
+2025-02-26 23:28:01,353 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:28:01,355 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:01,356 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:28:01,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:01,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:01,805 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:01,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:01,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:01,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:01,807 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:28:01,807 - INFO - GRPC Outgoing - GetMessages - Size: 2478 bytes | Retrieved 32 messages
+2025-02-26 23:28:01,807 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:01,808 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:01,808 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:28:01,808 - INFO - GRPC Outgoing - GetMessages - Size: 2478 bytes | Retrieved 32 messages
+2025-02-26 23:28:02,810 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:02,810 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:02,810 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:02,810 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:02,811 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:02,811 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:02,812 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:28:02,812 - INFO - GRPC Outgoing - GetMessages - Size: 2478 bytes | Retrieved 32 messages
+2025-02-26 23:28:02,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:02,813 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:02,813 - INFO - GRPC Outgoing - GetMessages - Size: 2274 bytes | Retrieved 29 messages
+2025-02-26 23:28:02,814 - INFO - GRPC Outgoing - GetMessages - Size: 2478 bytes | Retrieved 32 messages
+2025-02-26 23:28:03,215 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 48 bytes
+2025-02-26 23:28:03,216 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:28:03,217 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:03,218 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:03,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:03,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:03,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:03,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:03,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:03,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:03,811 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:03,811 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:03,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:03,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:03,812 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:03,812 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:04,621 - INFO - GRPC Incoming - MarkConversationAsRead - Size: 47 bytes
+2025-02-26 23:28:04,621 - INFO - GRPC Outgoing - MarkConversationAsRead - Size: 2 bytes | Success: True
+2025-02-26 23:28:04,622 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:04,622 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:04,804 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:04,805 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:04,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:04,805 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:04,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:04,806 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:04,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:04,806 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:04,807 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:04,807 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:04,807 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:04,807 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:05,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:05,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:05,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:05,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:05,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:05,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:05,808 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:05,809 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:05,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:05,810 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:05,810 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:05,811 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:06,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:06,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:06,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:06,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:06,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:06,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:06,810 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:06,811 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:06,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:06,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:06,812 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:06,812 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:07,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:07,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:07,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:07,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:07,806 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:07,807 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:07,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:07,807 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:07,808 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:07,808 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:07,808 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:07,809 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:08,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:08,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:08,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:08,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:08,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:08,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:08,810 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:08,810 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:08,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:08,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:08,815 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:08,816 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:09,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:09,808 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:09,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:09,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:09,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:09,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:09,810 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:09,810 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:09,810 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:09,811 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:09,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:09,811 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:10,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:10,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:10,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:10,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:10,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:10,809 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:10,809 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:10,810 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:10,810 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:10,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:10,811 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:10,811 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:11,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:11,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:11,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:11,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:11,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:11,810 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:11,811 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:11,811 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:11,819 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:11,820 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:11,827 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:11,828 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:12,807 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:12,808 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:12,809 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:12,809 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:12,811 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:12,813 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:12,815 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:12,817 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:12,820 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:12,821 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:12,822 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:12,823 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:13,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:13,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:13,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:13,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:13,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:13,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:13,808 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:13,809 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:13,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:13,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:13,813 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:13,814 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:14,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:14,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:14,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:14,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:14,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:14,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:14,809 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:14,810 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:14,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:14,818 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:14,821 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:14,821 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:15,814 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:15,815 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:15,815 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:15,817 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:15,818 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:15,819 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:15,823 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:15,826 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:15,832 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:15,834 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:15,837 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:15,838 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:16,817 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:16,817 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:16,821 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:16,823 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:16,824 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:16,825 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:16,825 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:16,825 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:16,826 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:16,826 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:16,826 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:16,826 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:17,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:17,806 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:17,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:17,807 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:17,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:17,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:17,809 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:17,810 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:17,811 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:17,812 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:17,812 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:17,814 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:18,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:18,805 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:18,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:18,806 - INFO - GRPC Outgoing - ListAccounts - Size: 65 bytes | Retrieved 7 accounts
+2025-02-26 23:28:18,807 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:18,808 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:18,808 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:18,809 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:18,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:18,809 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: c0be01d4-78a8-4ec9-ac4b-03744fce42e8
+2025-02-26 23:28:18,810 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:18,810 - INFO - GRPC Outgoing - GetMessages - Size: 2272 bytes | Retrieved 29 messages
+2025-02-26 23:28:19,616 - INFO - GRPC Incoming - Logout - Size: 38 bytes
+2025-02-26 23:28:19,617 - INFO - Logout attempt for user: mzcassim
+2025-02-26 23:28:19,618 - INFO - GRPC Outgoing - Logout - Size: 2 bytes | Success: True
+2025-02-26 23:28:19,804 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:19,804 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
+2025-02-26 23:28:19,805 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:19,806 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:19,806 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:19,806 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:20,821 - INFO - GRPC Incoming - ListAccounts - Size: 40 bytes
+2025-02-26 23:28:20,821 - INFO - GRPC Outgoing - ListAccounts - Size: 63 bytes | Retrieved 7 accounts
+2025-02-26 23:28:20,822 - INFO - GRPC Incoming - GetMessages - Size: 41 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:20,822 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:20,823 - INFO - GRPC Incoming - GetMessages - Size: 40 bytes | Session Token: 2ab0798e-c780-4f70-b64a-95bf6bedaad6
+2025-02-26 23:28:20,823 - INFO - GRPC Outgoing - GetMessages - Size: 2476 bytes | Retrieved 32 messages
+2025-02-26 23:28:21,764 - INFO - GRPC Incoming - Logout - Size: 38 bytes
+2025-02-26 23:28:21,764 - INFO - Logout attempt for user: pr28416
+2025-02-26 23:28:21,765 - INFO - GRPC Outgoing - Logout - Size: 2 bytes | Success: True
