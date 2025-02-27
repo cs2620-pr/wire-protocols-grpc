@@ -2,18 +2,50 @@ import pytest  # type: ignore
 import os
 import time
 import threading
+import logging
 from typing import Generator, List, Dict, Any, Callable
 from server.database import ChatDatabase
+
+# Create logs directory if it doesn't exist
+log_dir = "logs"
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
+# Configure database test logging to use the same file as regular execution
+database_logger = logging.getLogger("database")
+database_logger.setLevel(logging.DEBUG)
+
+# Remove any existing handlers to avoid duplicates
+for handler in database_logger.handlers[:]:
+    database_logger.removeHandler(handler)
+
+database_handler = logging.FileHandler(os.path.join(log_dir, "database.log"))
+database_handler.setFormatter(
+    logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+)
+database_logger.addHandler(database_handler)
+
+# Get a logger for test output
+logger = logging.getLogger("tests.database")
+# Add a console handler for test output
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(
+    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+)
+logger.addHandler(console_handler)
+logger.setLevel(logging.DEBUG)
 
 
 @pytest.fixture
 def db() -> Generator[ChatDatabase, None, None]:
     """Create a new test database before each test."""
     test_db_path = "test_chat.db"
+    logger.info(f"Creating test database at {test_db_path}")
     database = ChatDatabase(test_db_path)
     yield database
     # Cleanup after test
     if os.path.exists(test_db_path):
+        logger.info(f"Cleaning up test database {test_db_path}")
         os.remove(test_db_path)
 
 
@@ -21,6 +53,7 @@ def db() -> Generator[ChatDatabase, None, None]:
 def users(db: ChatDatabase) -> List[str]:
     """Create test users."""
     test_users = ["alice", "bob", "charlie", "david"]
+    logger.info(f"Creating {len(test_users)} test users: {', '.join(test_users)}")
     for user in test_users:
         db.create_user(user, "password123")
     return test_users
@@ -28,53 +61,87 @@ def users(db: ChatDatabase) -> List[str]:
 
 def test_create_user(db: ChatDatabase) -> None:
     """Test user creation and duplicate prevention."""
+    logger.info("Testing user creation and duplicate prevention")
+
     # Test successful user creation
+    logger.debug("Attempting to create a new user 'testuser'")
     success, msg = db.create_user("testuser", "password123")
+    logger.debug(f"Result: success={success}, message='{msg}'")
+
     assert success
     assert msg == "User created successfully"
 
     # Test duplicate username
+    logger.debug("Attempting to create a duplicate user 'testuser'")
     success, msg = db.create_user("testuser", "different_password")
+    logger.debug(f"Result: success={success}, message='{msg}'")
+
     assert not success
     assert msg == "Username already exists"
+
+    logger.info("User creation test completed successfully")
 
 
 def test_verify_user(db: ChatDatabase) -> None:
     """Test user verification with correct and incorrect credentials."""
+    logger.info("Testing user verification with correct and incorrect credentials")
+
     # Create a test user
+    logger.debug("Creating test user 'testuser'")
     db.create_user("testuser", "password123")
 
     # Test correct password
+    logger.debug("Testing login with correct password")
     success, msg = db.verify_user("testuser", "password123")
+    logger.debug(f"Result: success={success}, message='{msg}'")
+
     assert success
     assert msg == "Login successful"
 
     # Test incorrect password
-    success, msg = db.verify_user("testuser", "wrongpassword")
+    logger.debug("Testing login with incorrect password")
+    success, msg = db.verify_user("testuser", "wrong_password")
+    logger.debug(f"Result: success={success}, message='{msg}'")
+
     assert not success
     assert msg == "Invalid password"
 
     # Test non-existent user
+    logger.debug("Testing login with non-existent user")
     success, msg = db.verify_user("nonexistent", "password123")
+    logger.debug(f"Result: success={success}, message='{msg}'")
+
     assert not success
     assert msg == "User not found"
+
+    logger.info("User verification test completed successfully")
 
 
 def test_list_accounts(db: ChatDatabase, users: List[str]) -> None:
     """Test account listing with and without pattern matching."""
+    logger.info("Testing account listing functionality")
+
     # Test listing all accounts
-    accounts = db.list_accounts()
+    logger.debug("Testing listing all accounts")
+    accounts = db.list_accounts(pattern=None)  # Explicitly pass None as pattern
+    logger.debug(f"Found {len(accounts)} accounts")
+
     assert len(accounts) == len(users)
     usernames = [account["username"] for account in accounts]
     for user in users:
         assert user in usernames
 
     # Test pattern matching
+    logger.debug("Testing pattern matching with 'li'")
     accounts = db.list_accounts(pattern="li")  # Should match "alice" and "charlie"
+    logger.debug(f"Found {len(accounts)} accounts matching 'li'")
+
     assert len(accounts) == 2
     usernames = [account["username"] for account in accounts]
     assert "alice" in usernames
     assert "charlie" in usernames
+
+    logger.info("Account listing test completed successfully")
 
 
 def test_delete_account(db: ChatDatabase) -> None:
@@ -216,7 +283,7 @@ def test_concurrent_message_operations(db: ChatDatabase) -> None:
     # Verify message counts
     for user in users:
         messages = db.get_messages(user)
-        expected_count = 10  # (2 other users * 5 messages each)
+        expected_count = 20  # (2 other users * 5 messages each) * 2 directions
         assert len(messages) == expected_count
 
 

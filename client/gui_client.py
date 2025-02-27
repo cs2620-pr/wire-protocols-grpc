@@ -55,13 +55,20 @@ from server.chat.chat_pb2 import (
 from server.chat.chat_pb2_grpc import ChatServiceStub
 from server.constants import ErrorMessage, SuccessMessage
 
+# Create logs directory if it doesn't exist
+log_dir = "logs"
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,  # Set to DEBUG if needed
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[
-        logging.FileHandler("client.log"),  # Save logs to a file
-        logging.StreamHandler()  # Print logs to the console
+        logging.FileHandler(
+            os.path.join(log_dir, "client.log")
+        ),  # Save logs to the logs directory
+        logging.StreamHandler(),  # Print logs to the console
     ],
 )
 
@@ -75,6 +82,54 @@ CLIENT_SETTINGS = {
     "protocol": "json",
     "enable_logging": False,
 }
+
+
+# Logger mixin that can be used by any class that needs to log gRPC messages
+class GrpcLoggerMixin:
+    def __init__(self, enable_logging: bool = False) -> None:
+        self.enable_logging = enable_logging
+        self.protocol_logger = logging.getLogger("protocol_metrics")
+
+        if enable_logging:
+            # Create logs directory if it doesn't exist
+            log_dir = "logs"
+            if not os.path.exists(log_dir):
+                os.makedirs(log_dir)
+
+            # Configure logger if it's enabled
+            self.protocol_logger.setLevel(logging.INFO)
+
+            # Check if handler already exists to avoid duplicates
+            if not self.protocol_logger.handlers:
+                protocol_handler = logging.FileHandler(
+                    os.path.join(log_dir, "protocol_metrics_client.log")
+                )
+                protocol_handler.setFormatter(
+                    logging.Formatter(
+                        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+                    )
+                )
+                self.protocol_logger.addHandler(protocol_handler)
+
+            self.protocol_logger.info("Protocol metrics logging enabled in client")
+        else:
+            self.protocol_logger.setLevel(logging.WARNING)
+            # Make sure there's at least a NullHandler to avoid "no handlers" warnings
+            if not self.protocol_logger.handlers:
+                self.protocol_logger.addHandler(logging.NullHandler())
+
+    def log_message(
+        self, direction: str, method_name: str, message: Any, details: str = ""
+    ) -> None:
+        """Log gRPC message size and details if logging is enabled"""
+        if not self.enable_logging:
+            return
+
+        size = len(message.SerializeToString()) if message else 0
+        log_msg = f"GRPC {direction} - {method_name} - Size: {size} bytes"
+        if details:
+            log_msg += f" | {details}"
+        self.protocol_logger.info(log_msg)
 
 
 class MessageWidget(QFrame):
@@ -92,7 +147,7 @@ class MessageWidget(QFrame):
         self.init_ui()
 
         # Enable context menu
-        self.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.customContextMenuRequested.connect(self.show_context_menu)
 
     def init_ui(self) -> None:
@@ -153,7 +208,7 @@ class MessageWidget(QFrame):
         )  # Convert from milliseconds
         time_str = timestamp.strftime("%I:%M %p")
         time_label = QLabel(f"<small>{time_str}</small>")
-        time_label.setAlignment(Qt.AlignRight)
+        time_label.setAlignment(Qt.AlignmentFlag.AlignRight)
         if self.is_from_me:
             time_label.setStyleSheet("color: rgba(255, 255, 255, 0.7);")
         else:
@@ -181,43 +236,51 @@ class MessageWidget(QFrame):
         self.delete_requested.emit(self.message.message_id)
 
 
-class ChatWidget(QWidget):
-    """Widget for displaying and sending messages."""
+class ChatWidget(QWidget, GrpcLoggerMixin):
+    """Widget for displaying and interacting with chat."""
 
     def __init__(
-        self, session_token: str, username: str, stub: ChatServiceStub
+        self,
+        session_token: str,
+        username: str,
+        stub: ChatServiceStub,
+        enable_logging: bool = False,
     ) -> None:
-        super().__init__()
+        QWidget.__init__(self)
+        GrpcLoggerMixin.__init__(self, enable_logging)
+
         self.session_token = session_token
         self.username = username
         self.stub = stub
         self.selected_user: Optional[str] = None
-        self.users: Dict[str, bool] = {}  # username -> is_online status
+        self.users: Dict[str, bool] = {}  # username -> online status
         self.messages: List[Message] = []
-        self.last_poll_time = 0.0
+        self.last_update: float = 0.0  # Store as float for time.time() compatibility
+        self.update_in_progress = False
         self.unread_counts: Dict[str, int] = {}  # username -> unread message count
 
-        # Detect dark mode
+        # Start with dark mode detection
         self.is_dark_mode = self._is_dark_mode()
 
         self.init_ui()
 
-        # Start polling for updates
+        # Set up polling timer
         self.poll_timer = QTimer(self)
         self.poll_timer.timeout.connect(self.poll_for_updates)
-        self.poll_timer.start(2000)  # Poll every 2 seconds
-
-        # Initial poll
-        self.poll_for_updates()
+        self.poll_timer.start(1000)  # Poll every second
 
     def _is_dark_mode(self) -> bool:
         """Detect if system is using dark mode."""
-        app = QApplication.instance()
-        if app:
-            palette = app.palette()
-            bg_color = palette.color(QPalette.Window)
-            # If background is dark, assume dark mode
-            return bool(bg_color.lightness() < 128)
+        try:
+            app = QApplication.instance()
+            if app and isinstance(app, QApplication):
+                palette = app.palette()
+                bg_color = palette.color(QPalette.Window)
+                # If background is dark, assume dark mode
+                return bool(bg_color.lightness() < 128)
+        except Exception:
+            # If there's any error with palette detection, default to light mode
+            pass
         return False
 
     def init_ui(self) -> None:
@@ -310,7 +373,7 @@ class ChatWidget(QWidget):
         self.messages_container = QWidget()
         self.messages_container.setStyleSheet(f"background-color: {bg_color};")
         self.messages_layout = QVBoxLayout(self.messages_container)
-        self.messages_layout.setAlignment(Qt.AlignTop)
+        self.messages_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.messages_layout.setSpacing(4)  # Further reduced spacing between messages
         self.messages_layout.setContentsMargins(
             0, 0, 0, 0
@@ -393,7 +456,7 @@ class ChatWidget(QWidget):
         current_user_layout = QVBoxLayout()
         current_user_layout.setContentsMargins(5, 5, 5, 5)
         self.current_user_label = QLabel(self.username)
-        self.current_user_label.setAlignment(Qt.AlignCenter)
+        self.current_user_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         user_font = QFont()
         user_font.setBold(True)
         user_font.setPointSize(12)
@@ -573,7 +636,7 @@ class ChatWidget(QWidget):
             if self.selected_user:
                 self.update_messages()
 
-            self.last_poll_time = time.time()
+            self.last_update = time.time()
         except grpc.RpcError as e:
             print(f"Error polling for updates: {e}")
 
@@ -734,13 +797,16 @@ class ChatWidget(QWidget):
                 max_messages=100,  # Get up to 100 messages
             )
 
-            request_size = len(request.SerializeToString())  # Log request size
-            logger.info(f"GRPC Outgoing - GetMessages - Size: {request_size} bytes")
+            self.log_message("Outgoing", "GetMessages", request)
 
             response = self.stub.GetMessages(request)
 
-            response_size = len(response.SerializeToString())  # Log response size
-            logger.info(f"GRPC Incoming - GetMessages Response - Size: {response_size} bytes")
+            self.log_message(
+                "Incoming",
+                "GetMessages Response",
+                response,
+                f"Messages: {len(response.messages)}",
+            )
 
             if response.error_message:
                 logger.warning(f"Error getting messages: {response.error_message}")
@@ -774,11 +840,17 @@ class ChatWidget(QWidget):
                     ):
                         has_unread = True
 
-                    logger.debug(f"Including message: {msg.sender} -> {msg.recipient}: {msg.content[:30]}... (deleted: {msg.deleted})")
+                    logger.debug(
+                        f"Including message: {msg.sender} -> {msg.recipient}: {msg.content[:30]}... (deleted: {msg.deleted})"
+                    )
                 else:
-                    logger.debug(f"Filtering out message: {msg.sender} -> {msg.recipient}")
+                    logger.debug(
+                        f"Filtering out message: {msg.sender} -> {msg.recipient}"
+                    )
 
-            logger.info(f"Filtered to {len(filtered_messages)} messages for conversation with {self.selected_user}")
+            logger.info(
+                f"Filtered to {len(filtered_messages)} messages for conversation with {self.selected_user}"
+            )
 
             # If there are unread messages and the chat is currently open, mark them as read
             if has_unread and self.selected_user is not None:
@@ -795,7 +867,6 @@ class ChatWidget(QWidget):
 
         except grpc.RpcError as e:
             logger.error(f"Error updating messages: {e}")
-
 
     def _messages_changed(self, new_messages: List[Message]) -> bool:
         """Check if the messages have changed."""
@@ -816,8 +887,9 @@ class ChatWidget(QWidget):
     def _display_messages(self) -> None:
         """Display the messages in the UI."""
         # Save current scroll position before updating
-        current_scroll_position = self.messages_area.verticalScrollBar().value()
-        max_scroll_position = self.messages_area.verticalScrollBar().maximum()
+        scroll_bar = self.messages_area.verticalScrollBar()
+        current_scroll_position = scroll_bar.value() if scroll_bar else 0
+        max_scroll_position = scroll_bar.maximum() if scroll_bar else 0
         # Determine if we were at the bottom before updating
         was_at_bottom = (
             current_scroll_position >= max_scroll_position - 20
@@ -826,16 +898,22 @@ class ChatWidget(QWidget):
         # Clear current messages
         while self.messages_layout.count():
             item = self.messages_layout.takeAt(0)
-            if item.widget():
-                item.widget().deleteLater()
-            elif item.layout():
-                # Clear nested layouts
-                while item.layout().count():
-                    nested_item = item.layout().takeAt(0)
-                    if nested_item.widget():
-                        nested_item.widget().deleteLater()
-                # Remove the layout itself
-                item.layout().setParent(None)
+            if item:
+                widget = item.widget()
+                if widget:
+                    widget.deleteLater()
+                layout = item.layout()
+                if layout:
+                    # Clear nested layouts
+                    while layout.count():
+                        nested_item = layout.takeAt(0)
+                        if nested_item:
+                            widget = nested_item.widget()
+                            if widget:
+                                widget.deleteLater()
+                    # Remove the layout itself
+                    if layout:
+                        layout.setParent(None)
 
         # If there are no messages, just return after clearing
         if not self.messages:
@@ -903,11 +981,13 @@ class ChatWidget(QWidget):
 
         if was_at_bottom:
             # If we were at the bottom before, scroll to bottom again
-            scrollbar.setValue(scrollbar.maximum())
+            if scrollbar:
+                scrollbar.setValue(scrollbar.maximum())
         else:
             # Otherwise try to maintain the previous scroll position
             # Note: The actual position might be different due to content changes
-            scrollbar.setValue(previous_position)
+            if scrollbar:
+                scrollbar.setValue(previous_position)
 
     def _add_date_separator(self, date: datetime) -> None:
         """Add a date separator to the messages layout."""
@@ -936,7 +1016,7 @@ class ChatWidget(QWidget):
         )
 
         date_label = QLabel(date_str)
-        date_label.setAlignment(Qt.AlignCenter)
+        date_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         if self.is_dark_mode:
             date_label.setStyleSheet(
                 "color: #8E8E93; background-color: #2C2C2E; padding: 1px 6px; border-radius: 6px; font-size: 9px;"
@@ -996,15 +1076,21 @@ class ChatWidget(QWidget):
             # Always scroll to bottom when selecting a new user
             QTimer.singleShot(
                 100,
-                lambda: self.messages_area.verticalScrollBar().setValue(
-                    self.messages_area.verticalScrollBar().maximum()
-                ),
+                lambda: self._scroll_to_bottom(),
             )
+
+    def _scroll_to_bottom(self) -> None:
+        """Helper method to safely scroll to bottom."""
+        scroll_bar = self.messages_area.verticalScrollBar()
+        if scroll_bar is not None:
+            scroll_bar.setValue(scroll_bar.maximum())
 
     def send_message(self) -> None:
         """Send a message to the selected user with logging."""
         if not self.selected_user:
-            QMessageBox.warning(self, "No Recipient", "Please select a user to message.")
+            QMessageBox.warning(
+                self, "No Recipient", "Please select a user to message."
+            )
             logger.warning("Attempted to send a message without selecting a recipient.")
             return
 
@@ -1013,7 +1099,9 @@ class ChatWidget(QWidget):
             return
 
         try:
-            logger.info(f"Attempting to send message to {self.selected_user}: {message_text[:50]}{'...' if len(message_text) > 50 else ''}")
+            logger.info(
+                f"Attempting to send message to {self.selected_user}: {message_text[:50]}{'...' if len(message_text) > 50 else ''}"
+            )
 
             request = SendMessageRequest(
                 session_token=self.session_token,
@@ -1021,34 +1109,40 @@ class ChatWidget(QWidget):
                 content=message_text,
             )
 
-            request_size = len(request.SerializeToString())  # Log request size
-            logger.info(f"GRPC Outgoing - SendMessage - Size: {request_size} bytes")
+            self.log_message(
+                "Outgoing", "SendMessage", request, f"To: {self.selected_user}"
+            )
 
             response = self.stub.SendMessage(request)
 
-            response_size = len(response.SerializeToString())  # Log response size
-            logger.info(f"GRPC Incoming - SendMessage Response - Size: {response_size} bytes")
+            self.log_message(
+                "Incoming",
+                "SendMessage Response",
+                response,
+                f"Success: {response.success}",
+            )
 
             if response.success:
-                logger.info(f"Message sent successfully to {self.selected_user}, message_id: {response.message_id}")
+                logger.info(
+                    f"Message sent successfully to {self.selected_user}, message_id: {response.message_id}"
+                )
 
                 # Clear input field
                 self.message_input.clear()
 
                 # Force an immediate update and scroll to bottom
                 self.update_messages()
-                QTimer.singleShot(
-                    100,
-                    lambda: self.messages_area.verticalScrollBar().setValue(
-                        self.messages_area.verticalScrollBar().maximum()
-                    ),
-                )
+                QTimer.singleShot(100, lambda: self._scroll_to_bottom())
             else:
-                logger.warning(f"Failed to send message to {self.selected_user}: {response.error_message}")
+                logger.warning(
+                    f"Failed to send message to {self.selected_user}: {response.error_message}"
+                )
 
                 # Check if the error is because the recipient's account was deleted
                 if "user's account has been deleted" in response.error_message:
-                    logger.warning(f"User '{self.selected_user}' has deleted their account. Cannot send messages.")
+                    logger.warning(
+                        f"User '{self.selected_user}' has deleted their account. Cannot send messages."
+                    )
 
                     QMessageBox.warning(
                         self,
@@ -1057,7 +1151,7 @@ class ChatWidget(QWidget):
                     )
 
                     # Force a refresh of the users list to remove the deleted user
-                    self.last_poll_time = 0
+                    self.last_update = 0
                     self.poll_for_updates()
 
                     # Clear the selected user
@@ -1137,8 +1231,8 @@ class ChatWidget(QWidget):
                 # Force an immediate update to refresh the UI
                 print("Forcing immediate update of messages after deletion")
 
-                # Reset the last poll time to force an immediate poll
-                self.last_poll_time = 0
+                # Reset the last update time to force an immediate poll
+                self.last_update = 0
 
                 # Trigger an immediate poll for updates
                 self.poll_for_updates()
@@ -1301,12 +1395,15 @@ class ChatWidget(QWidget):
 
             # Style the delete button
             if self.is_dark_mode:
-                delete_button.setStyleSheet("color: #FF453A;")
+                if delete_button:
+                    delete_button.setStyleSheet("color: #FF453A;")
             else:
-                delete_button.setStyleSheet("color: #FF3B30;")
+                if delete_button:
+                    delete_button.setStyleSheet("color: #FF3B30;")
 
             # Disable delete button initially
-            delete_button.setEnabled(False)
+            if delete_button:
+                delete_button.setEnabled(False)
 
             # Connect signals
             button_box.rejected.connect(confirm_dialog.reject)
@@ -1314,7 +1411,8 @@ class ChatWidget(QWidget):
 
             # Enable delete button only when "DELETE" is typed
             def check_text() -> None:
-                delete_button.setEnabled(text_input.text() == "DELETE")
+                if delete_button:
+                    delete_button.setEnabled(text_input.text() == "DELETE")
 
             text_input.textChanged.connect(check_text)
 
@@ -1352,19 +1450,19 @@ class ChatWidget(QWidget):
                     )
 
 
-class AuthWidget(QWidget):
+class AuthWidget(QWidget, GrpcLoggerMixin):
     """Widget for handling authentication (login and registration)."""
 
     login_successful = pyqtSignal(
-        str, str, object
-    )  # Emits session_token, username, stub
+        str, str, ChatServiceStub
+    )  # session_token, username, stub
 
-    def __init__(self) -> None:
-        super().__init__()
-        # Initialize gRPC client
-        self.channel: Optional[grpc.Channel] = None
-        self.stub: Optional[ChatServiceStub] = None
+    def __init__(self, enable_logging: bool = False) -> None:
+        QWidget.__init__(self)
+        GrpcLoggerMixin.__init__(self, enable_logging)
+
         self.init_ui()
+        self.stub: Optional[ChatServiceStub] = None
 
         # Connect to server automatically after a short delay
         QTimer.singleShot(100, self.connect_to_server)
@@ -1377,7 +1475,7 @@ class AuthWidget(QWidget):
 
         # App title
         title_label = QLabel("Chat Application")
-        title_label.setAlignment(Qt.AlignCenter)
+        title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         title_font = QFont()
         title_font.setPointSize(24)
         title_font.setBold(True)
@@ -1416,7 +1514,7 @@ class AuthWidget(QWidget):
 
         # Status label
         self.status_label = QLabel("Connecting to server...")
-        self.status_label.setAlignment(Qt.AlignCenter)
+        self.status_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         main_layout.addWidget(self.status_label)
 
         self.setLayout(main_layout)
@@ -1492,7 +1590,12 @@ class AuthWidget(QWidget):
 
         try:
             request = LoginRequest(username=username, password=password)
+            self.log_message("Outgoing", "Login", request, f"User: {username}")
+
             response = self.stub.Login(request)
+            self.log_message(
+                "Incoming", "Login Response", response, f"Success: {response.success}"
+            )
 
             if response.success:
                 self.login_successful.emit(response.session_token, username, self.stub)
@@ -1520,7 +1623,15 @@ class AuthWidget(QWidget):
 
         try:
             request = CreateAccountRequest(username=username, password=password)
+            self.log_message("Outgoing", "CreateAccount", request, f"User: {username}")
+
             response = self.stub.CreateAccount(request)
+            self.log_message(
+                "Incoming",
+                "CreateAccount Response",
+                response,
+                f"Success: {response.success}",
+            )
 
             if response.success:
                 QMessageBox.information(
@@ -1535,37 +1646,36 @@ class AuthWidget(QWidget):
 
 
 class ChatApp(QMainWindow):
-    """Main application window."""
+    """Main window for the chat application."""
 
-    def __init__(self) -> None:
+    def __init__(self, enable_logging: bool = False) -> None:
         super().__init__()
         self.session_token: Optional[str] = None
         self.username: Optional[str] = None
         self.stub: Optional[ChatServiceStub] = None
+        self.enable_logging = enable_logging
         self.init_ui()
 
     def init_ui(self) -> None:
+        """Initialize the user interface."""
         self.setWindowTitle("Chat Application")
-        self.setMinimumSize(800, 600)  # Larger window for chat view
+        self.setGeometry(100, 100, 1200, 800)
 
-        # Create stacked widget for different screens
+        # Status bar to show connection status
+        status_bar = self.statusBar()
+        if status_bar is not None:
+            status_bar.showMessage("Not connected")
+
+        # Create stacked widget to switch between login and chat
         self.stacked_widget = QStackedWidget()
-
-        # Remove any margins from the central widget
-        self.setContentsMargins(0, 0, 0, 0)
-
-        # Create authentication widget
-        self.auth_widget = AuthWidget()
-        self.auth_widget.login_successful.connect(self.on_login_successful)
-
-        # Add widgets to stacked widget
-        self.stacked_widget.addWidget(self.auth_widget)
-
-        # Set central widget
         self.setCentralWidget(self.stacked_widget)
 
-        # Add status bar
-        self.statusBar().showMessage("Ready")
+        # Create and add auth widget
+        self.auth_widget = AuthWidget(enable_logging=self.enable_logging)
+        self.auth_widget.login_successful.connect(self.on_login_successful)
+        self.stacked_widget.addWidget(self.auth_widget)
+
+        self.show()
 
     def on_login_successful(
         self, session_token: str, username: str, stub: ChatServiceStub
@@ -1576,14 +1686,18 @@ class ChatApp(QMainWindow):
         self.stub = stub
 
         # Create and show chat widget
-        self.chat_widget = ChatWidget(session_token, username, stub)
+        self.chat_widget = ChatWidget(
+            session_token, username, stub, enable_logging=self.enable_logging
+        )
         self.stacked_widget.addWidget(self.chat_widget)
         self.stacked_widget.setCurrentWidget(self.chat_widget)
 
         # Update status bar
-        self.statusBar().showMessage(f"Logged in as {username}")
+        status_bar = self.statusBar()
+        if status_bar is not None:
+            status_bar.showMessage(f"Logged in as {username}")
 
-    def closeEvent(self, event: "QCloseEvent") -> None:
+    def closeEvent(self, event: QCloseEvent | None) -> None:
         """Handle window close event."""
         # Only attempt logout if user is logged in
         if hasattr(self, "chat_widget") and self.session_token:
@@ -1599,7 +1713,8 @@ class ChatApp(QMainWindow):
                 print(f"Error during logout on window close: {e}")
 
         # Accept the close event
-        event.accept()
+        if event is not None:
+            event.accept()
 
 
 def main() -> None:
@@ -1623,83 +1738,36 @@ def main() -> None:
 
     args = parser.parse_args()
 
+    # Check if we're running under pytest (which sets PYTEST_CURRENT_TEST env var)
+    is_test_environment = "PYTEST_CURRENT_TEST" in os.environ
+    # If we're in a test environment, automatically enable logging
+    if is_test_environment and not args.enable_logging:
+        args.enable_logging = True
+        logger.info(
+            "Test environment detected, automatically enabling protocol metrics logging"
+        )
+
     # Update global settings
     CLIENT_SETTINGS["host"] = args.host
     CLIENT_SETTINGS["port"] = args.port
     CLIENT_SETTINGS["protocol"] = args.protocol
     CLIENT_SETTINGS["enable_logging"] = args.enable_logging
 
-    # Configure logging based on arguments
+    # Configure loggers based on command line arguments
     if args.enable_logging:
         logger.setLevel(logging.INFO)
     else:
         logger.setLevel(logging.WARNING)
 
     # Note: The protocol argument is included for compatibility but not used in gRPC implementation
-    if args.protocol != "json" and args.enable_logging:
+    if args.protocol != "json":
         logger.warning(
             f"Protocol '{args.protocol}' specified, but this client uses gRPC"
         )
 
-    # Test server connection before starting the GUI
-    server_address = f"{CLIENT_SETTINGS['host']}:{CLIENT_SETTINGS['port']}"
-    print(f"Attempting to connect to server at {server_address}...")
-
-    try:
-        # Create a channel with a short timeout for the initial connection test
-        channel = grpc.insecure_channel(server_address)
-        # Create a stub for the channel
-        stub = ChatServiceStub(channel)
-
-        # Set a deadline for the connection attempt (3 seconds)
-        test_request = ListAccountsRequest(session_token="test_connection")
-        stub.ListAccounts(test_request, timeout=3)
-
-        # If we get here without an exception, we connected successfully
-        # (even though the request itself will fail due to invalid session)
-        print(f"Successfully connected to server at {server_address}")
-
-    except grpc.RpcError as e:
-        # Check if this is just an authentication error (which means connection succeeded)
-        if "Invalid or expired session" in str(e):
-            print(f"Successfully connected to server at {server_address}")
-        else:
-            # This is a real connection error
-            error_msg = f"Failed to connect to server at {server_address}: {str(e)}"
-            print(f"ERROR: {error_msg}")
-
-            # If we're in a terminal, just exit with an error
-            if not hasattr(sys, "ps1"):  # Check if we're in interactive mode
-                print("Exiting due to connection error.")
-                sys.exit(1)
-
-            # Otherwise, we'll continue and let the GUI handle it
-            print("Continuing to GUI, but connection will likely fail.")
-
-    except Exception as e:
-        error_msg = f"Failed to connect to server at {server_address}: {str(e)}"
-        print(f"ERROR: {error_msg}")
-
-        # If we're in a terminal, just exit with an error
-        if not hasattr(sys, "ps1"):  # Check if we're in interactive mode
-            print("Exiting due to connection error.")
-            sys.exit(1)
-
-        # Otherwise, we'll continue and let the GUI handle it
-        print("Continuing to GUI, but connection will likely fail.")
-
+    # Initialize Qt application
     app = QApplication(sys.argv)
-
-    # Use macOS native style
-    app.setStyle("macintosh")
-
-    # Set application-wide font to system font
-    font = QFont()  # Use system default font
-    app.setFont(font)
-
-    window = ChatApp()
-    window.show()
-
+    chat_app = ChatApp(enable_logging=args.enable_logging)
     sys.exit(app.exec_())
 
 

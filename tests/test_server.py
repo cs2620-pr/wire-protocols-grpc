@@ -3,6 +3,8 @@ import grpc  # type: ignore
 from unittest.mock import MagicMock, patch
 from typing import Generator, Tuple
 import time
+import logging
+import os
 
 from server.server import ChatServicer
 from server.chat.chat_pb2 import (
@@ -16,6 +18,44 @@ from server.chat.chat_pb2 import (
     AccountInfo,
 )
 from server.constants import ErrorMessage, SuccessMessage
+
+# Create logs directory if it doesn't exist
+log_dir = "logs"
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
+# Configure test logging to use the same files as regular execution
+logging.basicConfig(
+    level=logging.DEBUG,  # Use DEBUG level for tests
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler(
+            os.path.join(log_dir, "server.log")
+        ),  # Same file as regular execution
+        logging.StreamHandler(),  # Also print logs to the console for test output
+    ],
+)
+
+# Set up protocol metrics logger to use the same file
+protocol_logger = logging.getLogger("protocol_metrics")
+protocol_logger.setLevel(logging.DEBUG)
+
+# Remove any existing handlers to avoid duplicates
+for handler in protocol_logger.handlers[:]:
+    protocol_logger.removeHandler(handler)
+
+protocol_handler = logging.FileHandler(
+    os.path.join(log_dir, "protocol_metrics_server.log")
+)
+protocol_handler.setFormatter(
+    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+)
+protocol_logger.addHandler(protocol_handler)
+
+# Get a logger for test output
+logger = logging.getLogger("tests.server")
+
+# Tests will now use the fixtures from conftest.py to enable logging
 
 
 @pytest.fixture
@@ -52,49 +92,95 @@ def expired_session() -> str:
 
 
 def create_message(
-    message_id: str, sender: str, content: str, timestamp: int, delivered: bool = False
+    message_id: str,
+    sender: str,
+    content: str,
+    timestamp: int,
+    delivered: bool = False,
+    recipient: str = "testuser",
+    unread: bool = True,
+    deleted: bool = False,
 ) -> dict:
     """Helper function to create a message dictionary."""
     return {
         "message_id": message_id,
         "sender": sender,
+        "recipient": recipient,
         "content": content,
         "timestamp": timestamp,
         "delivered": delivered,
+        "unread": unread,
+        "deleted": deleted,
     }
 
 
 def test_create_account(
-    servicer: ChatServicer, context: grpc.ServicerContext, mock_database: MagicMock
+    servicer: ChatServicer,
+    context: grpc.ServicerContext,
+    mock_database: MagicMock,
 ) -> None:
     """Test account creation."""
     # Arrange
+    logger.info("Testing account creation functionality")
     mock_database.create_user.return_value = (True, "")
     request = CreateAccountRequest(username="testuser", password="testpass")
 
+    # Log the request manually to ensure it appears in protocol logs
+    servicer.log_message("TEST Request", "CreateAccount", request, "Test user creation")
+
     # Act
+    logger.debug("Sending CreateAccount request")
     response = servicer.CreateAccount(request, context)
+    logger.debug(f"Received CreateAccount response: success={response.success}")
+
+    # Log the response manually
+    servicer.log_message(
+        "TEST Response", "CreateAccount", response, f"Success: {response.success}"
+    )
 
     # Assert
     assert response.success is True
     assert response.error_message == ""
     mock_database.create_user.assert_called_once_with("testuser", "testpass")
+    logger.info("Account creation test completed successfully")
 
 
 def test_create_account_failure(
-    servicer: ChatServicer, context: grpc.ServicerContext, mock_database: MagicMock
+    servicer: ChatServicer,
+    context: grpc.ServicerContext,
+    mock_database: MagicMock,
 ) -> None:
     """Test account creation failure."""
     # Arrange
+    logger.info("Testing account creation failure functionality")
     mock_database.create_user.return_value = (False, ErrorMessage.USERNAME_EXISTS.value)
     request = CreateAccountRequest(username="testuser", password="testpass")
 
+    # Log the request manually
+    servicer.log_message(
+        "TEST Request", "CreateAccount", request, "Test user creation failure"
+    )
+
     # Act
+    logger.debug("Sending CreateAccount request (expected to fail)")
     response = servicer.CreateAccount(request, context)
+    logger.debug(
+        f"Received CreateAccount response: success={response.success}, error={response.error_message}"
+    )
+
+    # Log the response manually
+    servicer.log_message(
+        "TEST Response",
+        "CreateAccount",
+        response,
+        f"Failed as expected: {response.error_message}",
+    )
 
     # Assert
     assert response.success is False
     assert response.error_message == ErrorMessage.USERNAME_EXISTS.value
+    mock_database.create_user.assert_called_once_with("testuser", "testpass")
+    logger.info("Account creation failure test completed successfully")
 
 
 def test_login_success(
@@ -609,3 +695,43 @@ def test_delete_account_removes_session(
     assert username not in servicer.online_users
     # Verify account is deleted
     mock_database.delete_account.assert_called_once_with(username)
+
+
+def test_protocol_logging(
+    servicer: ChatServicer, context: grpc.ServicerContext, mock_database: MagicMock
+) -> None:
+    """Test that protocol logging is working automatically."""
+    # Arrange
+    logger.info("Testing protocol logging functionality")
+    mock_database.verify_session.return_value = "testuser"
+    mock_database.send_message.return_value = (True, "")
+
+    # Create a request that will generate sizeable log output
+    content = "This is a test message that should be logged with protocol metrics. " * 5
+    request = SendMessageRequest(
+        session_token="test_token", recipient="recipient", content=content
+    )
+
+    # Log test start
+    logger.debug("About to call SendMessage which should generate protocol logs")
+
+    # Act - this should trigger automatic protocol logging
+    response = servicer.SendMessage(request, context)
+
+    # Assert basic response is correct
+    assert response.success is True
+    assert response.error_message == ""
+
+    # Log test completion
+    logger.info("Protocol logging test completed - check logs directory for output")
+
+    # Verify the logs directory exists
+    assert os.path.exists("logs"), "Logs directory should be created"
+
+    # Additional log entry to make the logs go burr
+    servicer.log_message(
+        "TEST EXPLICIT",
+        "ProtocolLoggingTest",
+        request,
+        "This is an explicit log entry to verify protocol logging",
+    )

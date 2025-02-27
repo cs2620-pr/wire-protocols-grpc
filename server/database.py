@@ -1,20 +1,37 @@
 import sqlite3
 import time
 import bcrypt  # type: ignore
-from typing import List, Optional, Tuple, Dict, Any, Generator, Iterator, cast
+from typing import (
+    List,
+    Optional,
+    Tuple,
+    Dict,
+    Any,
+    Generator,
+    Iterator,
+    cast,
+    Collection,
+)
 from threading import Lock, local
 from contextlib import contextmanager
 import logging
+import os
 from .constants import ErrorMessage, SuccessMessage
 from typing import Optional
 
+# Create logs directory if it doesn't exist
+log_dir = "logs"
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
 # Configure logging
 logging.basicConfig(
-    filename="database.log",  # Store logs in a file
+    filename=os.path.join(log_dir, "database.log"),  # Store logs in the logs directory
     level=logging.INFO,  # Set log level to INFO
     format="%(asctime)s - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger("database")
+
 
 class ChatDatabase:
     def __init__(self, db_path: str = "chat.db") -> None:
@@ -216,8 +233,10 @@ class ChatDatabase:
                 # Verify recipient exists
                 cursor.execute("SELECT 1 FROM users WHERE username = ?", (recipient,))
                 if not cursor.fetchone():
-                    logger.warning(f"Message failed: Recipient {recipient} does not exist.")
-                    return False, ErrorMessage.RECIPIENT_DELETED.value
+                    logger.warning(
+                        f"Message failed: Recipient {recipient} does not exist."
+                    )
+                    return False, "Recipient not found"
 
                 # Calculate message size
                 message_size = len(content.encode("utf-8"))
@@ -227,7 +246,9 @@ class ChatDatabase:
                     f"Storing message | Sender: {sender} -> Recipient: {recipient} | Message Size: {message_size} bytes | Message ID: {message_id}"
                 )
 
-                current_time = int(time.time() * 1000)  # Use milliseconds for better precision
+                current_time = int(
+                    time.time() * 1000
+                )  # Use milliseconds for better precision
                 cursor.execute(
                     """
                     INSERT INTO messages (message_id, sender, recipient, content, timestamp)
@@ -241,9 +262,10 @@ class ChatDatabase:
 
                 return True, SuccessMessage.MESSAGE_SENT.value
         except Exception as e:
-            logger.error(f"Database error while storing message from {sender} to {recipient}: {str(e)}")
+            logger.error(
+                f"Database error while storing message from {sender} to {recipient}: {str(e)}"
+            )
             return False, str(e)
-
 
     def get_messages(self, username: str, limit: int = 50) -> List[dict]:
         """Get messages for a user."""
@@ -274,7 +296,7 @@ class ChatDatabase:
                         unread,
                         deleted
                     FROM messages
-                    WHERE (recipient = ? OR sender = ?)
+                    WHERE (recipient = ? OR sender = ?) AND deleted = FALSE
                     ORDER BY timestamp DESC
                     LIMIT ?
                 """,
@@ -286,22 +308,22 @@ class ChatDatabase:
             return []
 
     def delete_messages(
-        self, message_ids: List[str], username: str
-    ) -> Tuple[bool, List[str]]:
+        self, message_ids: Collection[str], username: str
+    ) -> Tuple[bool, Collection[str]]:
         """Delete specified messages for a user."""
         failed_ids = []
         try:
             with self.get_connection() as conn:
                 cursor: sqlite3.Cursor = conn.cursor()
                 for msg_id in message_ids:
-                    # Only allow deletion if the user is the sender
+                    # Allow deletion if the user is either the sender or the recipient
                     cursor.execute(
                         """
                         UPDATE messages 
                         SET deleted = 1
-                        WHERE message_id = ? AND sender = ?
+                        WHERE message_id = ? AND (sender = ? OR recipient = ?)
                     """,
-                        (msg_id, username),
+                        (msg_id, username, username),
                     )
                     if cursor.rowcount == 0:
                         failed_ids.append(msg_id)
