@@ -2,6 +2,8 @@
 
 *by Pranav Ramesh and Mohamed Zidan Cassim*
 
+*Link to repo: [https://github.com/cs2620-pr/wire-protocols-grpc](https://github.com/cs2620-pr/wire-protocols-grpc)*
+
 ---
 
 ### Objective
