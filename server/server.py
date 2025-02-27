@@ -512,12 +512,6 @@ if __name__ == "__main__":
         "--port", type=int, default=8000, help="Port number to listen on"
     )
     parser.add_argument(
-        "--protocol",
-        default="json",
-        choices=["json", "custom"],
-        help="Protocol type to use (choices: json, custom)",
-    )
-    parser.add_argument(
         "--db-path", default="chat.db", help="Path to the SQLite database file"
     )
     parser.add_argument(
@@ -533,12 +527,6 @@ if __name__ == "__main__":
         args.enable_logging = True
         logger.info(
             "Test environment detected, automatically enabling protocol metrics logging"
-        )
-
-    # Note: The protocol argument is included for compatibility but not used in gRPC implementation
-    if args.protocol != "json":
-        logger.warning(
-            f"Protocol '{args.protocol}' specified, but this server uses gRPC"
         )
 
     # Validate port number

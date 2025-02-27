@@ -1,0 +1,7 @@
+Operation,Count,Total Bytes,Avg Size (bytes)
+GetMessages,1771,1559742,880.71
+ListAccounts,984,50324,51.14
+MarkConversationAsRead,152,3586,23.59
+SendMessage,75,3672,48.96
+Login,25,587,23.48
+Logout,16,320,20.0

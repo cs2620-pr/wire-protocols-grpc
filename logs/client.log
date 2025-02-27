@@ -1010,3 +1010,75 @@
 2025-02-26 23:28:20,823 - client - INFO - Received 32 total messages from server
 2025-02-26 23:28:20,823 - client - INFO - Filtered to 29 messages for conversation with mzcassim
 2025-02-26 23:28:20,824 - client - INFO - No changes in messages, skipping display update
+2025-02-26 23:33:13,589 - protocol_metrics - INFO - Protocol metrics logging enabled in client
+2025-02-26 23:33:13,701 - client - INFO - Connecting to server at localhost:8000
+2025-02-26 23:33:13,707 - client - INFO - Successfully connected to server at localhost:8000
+2025-02-26 23:33:16,378 - protocol_metrics - INFO - GRPC Outgoing - Login - Size: 12 bytes | User: pr28416
+2025-02-26 23:33:16,627 - protocol_metrics - INFO - GRPC Incoming - Login Response - Size: 40 bytes | Success: True
+2025-02-26 23:33:16,627 - protocol_metrics - INFO - Protocol metrics logging enabled in client
+2025-02-26 23:33:18,177 - client - INFO - Updating messages for selected user: mo
+2025-02-26 23:33:18,178 - protocol_metrics - INFO - GRPC Outgoing - GetMessages - Size: 40 bytes
+2025-02-26 23:33:18,180 - protocol_metrics - INFO - GRPC Incoming - GetMessages Response - Size: 2476 bytes | Messages: 32
+2025-02-26 23:33:18,180 - client - INFO - Received 32 total messages from server
+2025-02-26 23:33:18,180 - client - INFO - Filtered to 1 messages for conversation with mo
+2025-02-26 23:33:18,183 - client - INFO - Updated display with 1 messages
+2025-02-26 23:33:18,742 - client - INFO - Updating messages for selected user: mo
+2025-02-26 23:33:18,742 - protocol_metrics - INFO - GRPC Outgoing - GetMessages - Size: 40 bytes
+2025-02-26 23:33:18,743 - protocol_metrics - INFO - GRPC Incoming - GetMessages Response - Size: 2476 bytes | Messages: 32
+2025-02-26 23:33:18,744 - client - INFO - Received 32 total messages from server
+2025-02-26 23:33:18,744 - client - INFO - Filtered to 1 messages for conversation with mo
+2025-02-26 23:33:18,744 - client - INFO - No changes in messages, skipping display update
+2025-02-26 23:33:19,054 - client - INFO - Updating messages for selected user: ksoni
+2025-02-26 23:33:19,054 - protocol_metrics - INFO - GRPC Outgoing - GetMessages - Size: 40 bytes
+2025-02-26 23:33:19,056 - protocol_metrics - INFO - GRPC Incoming - GetMessages Response - Size: 2476 bytes | Messages: 32
+2025-02-26 23:33:19,056 - client - INFO - Received 32 total messages from server
+2025-02-26 23:33:19,056 - client - INFO - Filtered to 1 messages for conversation with ksoni
+2025-02-26 23:33:19,058 - client - INFO - Updated display with 1 messages
+2025-02-26 23:33:19,788 - client - INFO - Updating messages for selected user: ksoni
+2025-02-26 23:33:19,788 - protocol_metrics - INFO - GRPC Outgoing - GetMessages - Size: 40 bytes
+2025-02-26 23:33:19,789 - protocol_metrics - INFO - GRPC Incoming - GetMessages Response - Size: 2476 bytes | Messages: 32
+2025-02-26 23:33:19,789 - client - INFO - Received 32 total messages from server
+2025-02-26 23:33:19,789 - client - INFO - Filtered to 1 messages for conversation with ksoni
+2025-02-26 23:33:19,789 - client - INFO - No changes in messages, skipping display update
+2025-02-26 23:33:19,829 - client - INFO - Updating messages for selected user: sein
+2025-02-26 23:33:19,829 - protocol_metrics - INFO - GRPC Outgoing - GetMessages - Size: 40 bytes
+2025-02-26 23:33:19,831 - protocol_metrics - INFO - GRPC Incoming - GetMessages Response - Size: 2476 bytes | Messages: 32
+2025-02-26 23:33:19,832 - client - INFO - Received 32 total messages from server
+2025-02-26 23:33:19,832 - client - INFO - Filtered to 0 messages for conversation with sein
+2025-02-26 23:33:19,832 - client - INFO - No changes in messages, skipping display update
+2025-02-26 23:33:20,279 - client - INFO - Updating messages for selected user: mzcassim
+2025-02-26 23:33:20,279 - protocol_metrics - INFO - GRPC Outgoing - GetMessages - Size: 40 bytes
+2025-02-26 23:33:20,282 - protocol_metrics - INFO - GRPC Incoming - GetMessages Response - Size: 2476 bytes | Messages: 32
+2025-02-26 23:33:20,282 - client - INFO - Received 32 total messages from server
+2025-02-26 23:33:20,282 - client - INFO - Filtered to 29 messages for conversation with mzcassim
+2025-02-26 23:33:20,296 - client - INFO - Updated display with 29 messages
+2025-02-26 23:33:20,801 - client - INFO - Updating messages for selected user: mzcassim
+2025-02-26 23:33:20,802 - protocol_metrics - INFO - GRPC Outgoing - GetMessages - Size: 40 bytes
+2025-02-26 23:33:20,805 - protocol_metrics - INFO - GRPC Incoming - GetMessages Response - Size: 2476 bytes | Messages: 32
+2025-02-26 23:33:20,805 - client - INFO - Received 32 total messages from server
+2025-02-26 23:33:20,805 - client - INFO - Filtered to 29 messages for conversation with mzcassim
+2025-02-26 23:33:20,805 - client - INFO - No changes in messages, skipping display update
+2025-02-26 23:33:20,878 - client - INFO - Updating messages for selected user: a
+2025-02-26 23:33:20,878 - protocol_metrics - INFO - GRPC Outgoing - GetMessages - Size: 40 bytes
+2025-02-26 23:33:20,879 - protocol_metrics - INFO - GRPC Incoming - GetMessages Response - Size: 2476 bytes | Messages: 32
+2025-02-26 23:33:20,880 - client - INFO - Received 32 total messages from server
+2025-02-26 23:33:20,880 - client - INFO - Filtered to 1 messages for conversation with a
+2025-02-26 23:33:20,881 - client - INFO - Updated display with 1 messages
+2025-02-26 23:33:21,261 - client - INFO - Updating messages for selected user: dliu
+2025-02-26 23:33:21,261 - protocol_metrics - INFO - GRPC Outgoing - GetMessages - Size: 40 bytes
+2025-02-26 23:33:21,263 - protocol_metrics - INFO - GRPC Incoming - GetMessages Response - Size: 2476 bytes | Messages: 32
+2025-02-26 23:33:21,263 - client - INFO - Received 32 total messages from server
+2025-02-26 23:33:21,263 - client - INFO - Filtered to 0 messages for conversation with dliu
+2025-02-26 23:33:21,263 - client - INFO - No changes in messages, skipping display update
+2025-02-26 23:33:21,801 - client - INFO - Updating messages for selected user: dliu
+2025-02-26 23:33:21,801 - protocol_metrics - INFO - GRPC Outgoing - GetMessages - Size: 40 bytes
+2025-02-26 23:33:21,802 - protocol_metrics - INFO - GRPC Incoming - GetMessages Response - Size: 2476 bytes | Messages: 32
+2025-02-26 23:33:21,802 - client - INFO - Received 32 total messages from server
+2025-02-26 23:33:21,803 - client - INFO - Filtered to 0 messages for conversation with dliu
+2025-02-26 23:33:21,803 - client - INFO - No changes in messages, skipping display update
+2025-02-26 23:33:22,801 - client - INFO - Updating messages for selected user: dliu
+2025-02-26 23:33:22,801 - protocol_metrics - INFO - GRPC Outgoing - GetMessages - Size: 40 bytes
+2025-02-26 23:33:22,802 - protocol_metrics - INFO - GRPC Incoming - GetMessages Response - Size: 2476 bytes | Messages: 32
+2025-02-26 23:33:22,802 - client - INFO - Received 32 total messages from server
+2025-02-26 23:33:22,802 - client - INFO - Filtered to 0 messages for conversation with dliu
+2025-02-26 23:33:22,802 - client - INFO - No changes in messages, skipping display update

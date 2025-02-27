@@ -79,7 +79,6 @@ logger = logging.getLogger("client")  # Use a specific logger for clarity
 CLIENT_SETTINGS = {
     "host": "localhost",
     "port": 8000,
-    "protocol": "json",
     "enable_logging": False,
 }
 
@@ -1727,12 +1726,6 @@ def main() -> None:
         "--port", type=int, default=8000, help="Server port number to connect to"
     )
     parser.add_argument(
-        "--protocol",
-        default="json",
-        choices=["json", "custom"],
-        help="Protocol type to use (choices: json, custom)",
-    )
-    parser.add_argument(
         "--enable-logging", action="store_true", help="Enable protocol metrics logging"
     )
 
@@ -1750,7 +1743,6 @@ def main() -> None:
     # Update global settings
     CLIENT_SETTINGS["host"] = args.host
     CLIENT_SETTINGS["port"] = args.port
-    CLIENT_SETTINGS["protocol"] = args.protocol
     CLIENT_SETTINGS["enable_logging"] = args.enable_logging
 
     # Configure loggers based on command line arguments
@@ -1758,12 +1750,6 @@ def main() -> None:
         logger.setLevel(logging.INFO)
     else:
         logger.setLevel(logging.WARNING)
-
-    # Note: The protocol argument is included for compatibility but not used in gRPC implementation
-    if args.protocol != "json":
-        logger.warning(
-            f"Protocol '{args.protocol}' specified, but this client uses gRPC"
-        )
 
     # Initialize Qt application
     app = QApplication(sys.argv)

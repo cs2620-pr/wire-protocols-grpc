@@ -112,7 +112,7 @@ The server will start on localhost:8000 by default and create a SQLite database 
 - `--host`: Host address to bind the server to (default: localhost)
 - `--port`: Port number to listen on (default: 8000)
 - `--db-path`: Path to the SQLite database file (default: chat.db)
-- `--protocol`: Protocol type to use (choices: json, custom; default: json)
+- `--enable-logging`: Enable protocol metrics logging
 
 Example with custom settings:
 ```
@@ -133,7 +133,6 @@ The client will attempt to connect to a server running on localhost:8000 by defa
 
 - `--host`: Server host address to connect to (default: localhost)
 - `--port`: Server port number to connect to (default: 8000)
-- `--protocol`: Protocol type to use (choices: json, custom; default: json)
 - `--enable-logging`: Enable protocol metrics logging
 
 Example with custom settings:

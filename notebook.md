@@ -1,25 +1,25 @@
-**Engineering Notebook Entry: Re-Implementing our Chat Application with gRPC**
+# Engineering Notebook Entry: Re-Implementing our Chat Application with gRPC
 
 *by Pranav Ramesh and Mohamed Zidan Cassim*
 
 ---
 
 ### Objective
-The goal of this exercise was to re-implement our previously designed chat application, by replacing the use of sockets and our custom wire protocol/JSON with a gRPC implementation. This document examines the impact of this transition on application complexity, data size, client and server architecture, and testing.
+For this exercise, we decided to re-implement our previous chat application, replacing our custom wire protocol/JSON approach with gRPC. We wanted to see how this would affect application complexity, data size, architecture, and testing. This notebook documents our findings and the challenges we faced along the way.
 
 ---
 
 ### Implementation Approach
 
 #### 1. Migration from Sockets to gRPC
-- Our original implementation used broadcasting, and whilst trying to migrate this code to gRPC, we quickly realized that gRPC is primarily used for polling. However, we had also implemented polling in a previous iteration before deciding that broadcasting was a better design choice, and were able to refer back to and utilize some aspects of this implementation.
-- The original implementation utilized raw sockets and JSON for message serialization.
-- gRPC replaces this with Remote Procedure Calls (RPC) over HTTP/2, leveraging Protocol Buffers (protobuf) for data serialization.
-- Instead of handling low-level socket programming, the application now defines service contracts via Protobuf and auto-generates client and server stubs.
+- Our original socket implementation used broadcasting, which worked great. When we started migrating to gRPC, we quickly hit our first roadblock: gRPC is primarily designed for polling, not broadcasting! Fortunately, we had implemented polling in a previous iteration before deciding on broadcasting, so we had some code to fall back on.
+- Our original implementation was pretty bare-bones: raw sockets and JSON for message serialization.
+- With gRPC, we now had Remote Procedure Calls over HTTP/2 with Protocol Buffers (protobuf) handling serialization.
+- The biggest difference was that we no longer had to deal with the headache of low-level socket programming. Instead, we defined service contracts in Protobuf and let the system generate client and server stubs for us.
 
 ##### 1.1 Broadcasting in the Original Implementation
 
-In our socket-based implementation, we used a broadcasting approach where the server would actively push messages to connected clients without them having to request updates. This was implemented through the `send_to_recipients` method in our original server:
+In our original socket-based implementation, we used a broadcasting approach where the server would actively push messages to clients. This worked really well for a chat application, where you want messages to appear instantly. Here's how we did it with the `send_to_recipients` method:
 
 ```python
 def send_to_recipients(self, message: ChatMessage, exclude_socket=None):
@@ -59,12 +59,12 @@ def send_to_recipients(self, message: ChatMessage, exclude_socket=None):
                 ).start()
 ```
 
-This approach had several advantages:
-- **Real-time updates**: Messages were delivered instantly to online users
-- **Efficient for active chats**: Only one message transmission was needed per recipient
-- **Simple mental model**: The server actively notified clients of new events
+This approach had some nice advantages:
+- Messages appeared instantly for online users (no lag!)
+- Efficient for active chats since we only sent each message once per recipient
+- Conceptually straightforward: server tells clients when something happens
 
-The implementation maintained mappings between sockets and usernames to efficiently deliver messages:
+We kept track of everything with these simple dictionaries:
 
 ```python
 self.clients: Dict[socket.socket, str] = {}  # socket -> username
@@ -73,9 +73,9 @@ self.usernames: Dict[str, socket.socket] = {}  # username -> socket
 
 ##### 1.2 Transition to Polling with gRPC
 
-With gRPC, we found that implementing a broadcasting pattern was more complex, as the framework is primarily designed around a request-response model. While gRPC does support server streaming, we opted for a simpler polling-based approach where clients periodically request updates from the server.
+With gRPC, we hit a wall trying to implement the same broadcasting pattern. While gRPC does support server streaming, we found the polling approach was simpler given our timeframe. So we switched to a model where clients periodically ask "got anything new for me?"
 
-The client-side polling is implemented in the `poll_for_updates` method:
+We implemented client-side polling with this method:
 
 ```python
 def poll_for_updates(self) -> None:
@@ -93,11 +93,11 @@ def poll_for_updates(self) -> None:
         print(f"Error polling for updates: {e}")
 ```
 
-This method is called periodically (every few seconds) to:
-1. Update the list of online users
-2. Check for new messages when a conversation is open
+This gets called every few seconds to:
+1. Check who's online
+2. See if there are new messages in the current conversation
 
-The server implements a `GetMessages` endpoint that returns all messages for the requesting user:
+On the server side, we implemented a `GetMessages` endpoint that returns all relevant messages:
 
 ```python
 def GetMessages(self, request: GetMessagesRequest, context: grpc.ServicerContext) -> GetMessagesResponse:
@@ -116,7 +116,7 @@ def GetMessages(self, request: GetMessagesRequest, context: grpc.ServicerContext
     return GetMessagesResponse(messages=messages)
 ```
 
-The client then filters these messages to display only those relevant to the current conversation:
+The client then filters these to show only what's relevant:
 
 ```python
 # Filter messages for the selected user
@@ -133,26 +133,34 @@ for msg in response.messages:
         filtered_messages.append(msg)
 ```
 
-##### 1.3 Advantages and Disadvantages of Both Approaches
+##### 1.3 The Trade-offs We Found
 
-**Broadcasting (Original Approach)**:
-- ✅ Lower latency for message delivery
-- ✅ Less network traffic when conversations are active
-- ✅ More "chat-like" behavior where messages appear immediately
-- ❌ More complex server-side code to manage connections
-- ❌ Requires custom protocol implementation
-- ❌ Difficult to scale with many concurrent users
+**Broadcasting (Our Original Approach)**: 
 
-**Polling (gRPC Approach)**:
-- ✅ Simpler client and server implementations
-- ✅ Better scalability with standardized HTTP/2 infrastructure
-- ✅ Automatic reconnection handling
-- ✅ More robust against network issues
-- ❌ Higher latency for message delivery
-- ❌ Potentially more network traffic due to periodic polling
-- ❌ Less efficient for inactive users (polling when no new messages)
+Pros:
+- Messages appeared instantly - much better user experience
+- Less network traffic when conversations are active
+- Felt more "chat-like" with immediate message delivery
 
-We mitigated some of the disadvantages of polling by implementing intelligent update detection:
+Cons:
+- We spent way too much time debugging socket connection issues
+- Had to write our own protocol from scratch
+- Would be a nightmare to scale beyond a classroom demo
+
+**Polling (Our gRPC Approach)**:
+
+Pros:
+- So much simpler to implement! Less hair-pulling debugging sessions
+- Better scaling potential with standard HTTP/2 infrastructure
+- Handles reconnections automatically (huge win!)
+- More robust when networks get flaky
+
+Cons:
+- Messages have a slight delay (up to our polling interval)
+- More network traffic since we're checking for updates constantly
+- Wastes bandwidth for inactive users who are still polling
+
+We did try to be smart about polling by only updating the UI when something changed:
 
 ```python
 # Check if messages have changed before updating display
@@ -165,18 +173,18 @@ else:
 
 #### 2. Changes to Client and Server Structure
 **Client:**
-- Instead of directly managing socket connections, the client now calls remote procedures defined in the `.proto` file.
-- Message passing follows a structured RPC request/response model.
-- Streaming messages can be used for real-time interactions (e.g., bidirectional streaming for chat messages).
+- Instead of wrestling with socket connections, our client now makes simple RPC calls defined in our `.proto` file.
+- Message passing follows a nice, structured request/response pattern.
+- We could have used streaming for real-time interactions, but didn't get to implement that in our timeframe.
 
 **Server:**
-- No longer needs to handle raw socket connections or custom JSON parsing.
-- Implements gRPC service methods as defined in the `.proto` file.
-- Can support multiple clients via gRPC's built-in concurrency management.
+- No more dealing with socket management or custom JSON parsing headaches.
+- Just implements the service methods we defined in the `.proto` file.
+- Multiple clients are handled automatically by gRPC's concurrency management.
 
 #### 3. Session Management Differences
 
-In our socket-based implementation, user sessions were tied directly to socket connections:
+In our socket implementation, sessions were tied directly to socket connections, which was fragile:
 
 ```python
 def handle_client(self, client_socket: socket.socket):
@@ -194,7 +202,7 @@ def handle_client(self, client_socket: socket.socket):
                     self.usernames[username] = client_socket
 ```
 
-In contrast, the gRPC implementation uses session tokens that are independent of the connection:
+With gRPC, we switched to session tokens independent of connections, which was much more robust:
 
 ```python
 def Login(self, request: LoginRequest, context: grpc.ServicerContext) -> LoginResponse:
@@ -219,50 +227,166 @@ def Login(self, request: LoginRequest, context: grpc.ServicerContext) -> LoginRe
     )
 ```
 
-This approach provides more flexibility and allows clients to disconnect and reconnect without losing their session, making the application more robust against network issues.
+This was a huge improvement - users could disconnect and reconnect without losing their session. Much better for real-world usage where connections drop all the time.
 
 ---
 
-### Impact Analysis
+### Comparative Analysis
 
 #### 1. Ease of Development
-- **Easier:** The use of gRPC abstracts much of the low-level networking code, reducing the complexity of managing sockets, message serialization, and protocol handling.
-- **Automatic Code Generation:** Protobuf definitions auto-generate client and server stubs, eliminating boilerplate code.
-- **Clear API Definition:** The `.proto` file acts as a self-documenting contract, making it easier to maintain and extend.
+- **Way Easier:** Using gRPC saved us so much time that would have gone into socket management and protocol design.
+- **Auto-Generated Code FTW:** Defining our `.proto` file and letting it generate client and server stubs was magical compared to writing all that code by hand.
+- **Clear Contracts:** The `.proto` file served as documentation, contract, and code generation all in one - super helpful when we were splitting work.
 
 #### 2. Data Size and Efficiency
-- **Smaller:** Protobuf is more efficient than JSON, reducing payload sizes.
-- **Binary Serialization:** Unlike JSON, which is text-based, Protobuf encodes data in a compact binary format.
-- **Better Performance:** gRPC runs over HTTP/2, enabling multiplexed streams and lower latency.
+- **Surprising Results:** We were shocked when we measured the actual network traffic between our different implementations.
+- **Theory vs. Reality:** While Protobuf is supposed to be more efficient than JSON, our particular implementation showed some unexpected results.
+
+##### 2.1 Protocol Efficiency Analysis
+
+We measured all three protocols we tried throughout this project:
+
+| Protocol | Total Messages | Total Bytes | Avg Size (bytes) |
+|-------------|--------------|------------|----------------|
+| gRPC | 3,023 | 1,615,231 | 534.53 |
+| JSONProtocol | 7,288 | 1,734,544 | 238.00 |
+| CustomWireProtocol | 9,202 | 495,293 | 53.82 |
+
+###### Operation-Specific Statistics
+
+| Operation | gRPC Count | gRPC Avg Size (bytes) | JSON Avg Size (bytes) | CustomWire Avg Size (bytes) |
+|--------------------------|-----------|-------------------|-------------------|---------------------|
+| GetMessages | 1,771 | 880.71 | 231.48 | 49.02 |
+| ListAccounts | 984 | 51.14 | - | - |
+| MarkConversationAsRead | 152 | 23.59 | 237.58 | 50.10 |
+| SendMessage | 75 | 48.96 | 242.11 | 63.40 |
+| Login | 25 | 23.48 | 244.19 | 67.88 |
+| Logout | 16 | 20.00 | 233.28 | 49.24 |
+
+###### Message Size Analysis
+
+- **Wait, What?** To our surprise, gRPC messages averaged 534.53 bytes, way bigger than our CustomWireProtocol (53.82 bytes) and even JSONProtocol (238.00 bytes).
+- **The GetMessages Problem:** Looking deeper, we found that GetMessages in gRPC was a bandwidth hog at 880.71 bytes per request. This was because our implementation grabbed all messages for a user at once instead of just new ones.
+
+###### Efficiency Analysis
+
+- **Bandwidth Comparison:**
+  - JSON messages were 3.4× larger than our custom protocol
+  - gRPC messages were 2.2× larger than JSON and a whopping 9.9× larger than our custom protocol
+  - If we scaled to 1 million messages:
+    - CustomWireProtocol: 51.3 MB
+    - JSONProtocol: 227.0 MB
+    - gRPC: 534.5 MB
+
+This was a real eye-opener for us. gRPC is supposed to be efficient, but our implementation ended up being the most bandwidth-hungry of all three approaches!
+
+- **Operation-by-Operation:**
+  - GetMessages was our biggest bandwidth consumer in gRPC
+  - SendMessage in gRPC (48.96 bytes) was actually much smaller than JSON (242.11 bytes)
+  - Login, Logout, and MarkConversationAsRead in gRPC were all smaller than JSON too
+
+###### What This Means for Scaling
+
+Given how much larger our gRPC messages were, we'd have higher network costs in a real deployment. But gRPC's HTTP/2 foundation would probably still give us better performance where raw throughput matters more than bandwidth usage.
 
 #### 3. Client and Server Changes
 | Aspect            | Custom Sockets & JSON | gRPC |
 |------------------|---------------------|------|
-| Message Handling | Custom parsing & validation | Handled by Protobuf |
-| Networking       | Manual socket management | Automatic via gRPC library |
-| Data Format      | JSON (larger, human-readable) | Protobuf (smaller, binary) |
-| API Contracts    | Implicit | Explicit via `.proto` |
-| Error Handling   | Manual | Built-in with status codes |
+| Message Handling | Tons of manual work | Handled automatically |
+| Networking       | Socket nightmares | Works like magic |
+| Data Format      | JSON (readable but big) | Protobuf (compact but binary) |
+| API Contracts    | Hope and pray | Clearly defined in `.proto` |
+| Error Handling   | DIY | Built-in status codes |
 | Message Delivery | Broadcasting (push) | Polling (pull) |
-| Connection Management | Manual reconnection logic | Automatic with HTTP/2 |
+| Connection Management | Reconnect? Good luck! | Mostly automatic |
 
 #### 4. Testing Considerations
-- **Easier Unit Testing:**
-  - The structured API provided by gRPC simplifies mocking requests.
-  - gRPC supports automatic validation of request/response formats.
+- **Much Easier Unit Testing:**
+  - The structured API made it simple to test individual components
+  - We could mock requests and verify responses without complex setup
 - **Integration Testing:**
-  - gRPC tooling includes reflection and interceptors for monitoring API calls.
-  - Load testing can benefit from built-in HTTP/2 support.
-- **Debugging:**
-  - Harder to debug than JSON-based APIs due to binary encoding.
-  - Requires tools like `grpcurl` or `grpcui` to inspect messages.
+  - gRPC tools made monitoring API calls much easier
+  - HTTP/2 support simplified load testing
+- **Debugging Reality Check:**
+  - Binary protocols are harder to debug by eye
+  - We had to use tools like `grpcurl` to see what was happening
 
 ---
 
 ### Conclusion
-Replacing raw sockets and JSON with gRPC significantly improves the development experience, reduces message size, and provides a well-structured API. However, debugging can be slightly more challenging due to Protobuf's binary nature. Testing is simplified through built-in request validation, structured API contracts, and gRPC's support for bidirectional streaming and multiplexing.
+Switching to gRPC was definitely a win for developer productivity. We spent way less time wrestling with networking code and more time on actual application features. 
 
-The shift from broadcasting to polling represents a fundamental change in how messages are delivered, with trade-offs in terms of latency and efficiency. While broadcasting provides more immediate delivery, polling with gRPC offers better reliability and scalability.
+The biggest surprise was our message size measurements. While we expected gRPC to be more efficient, our implementation actually used more bandwidth than both JSON and our custom protocol. This was mostly due to how we designed our GetMessages operation - a good reminder that architectural decisions can override theoretical protocol efficiencies.
 
-Overall, the migration to gRPC makes the chat application more maintainable and scalable, while also improving performance and security.
+The shift from broadcasting to polling changed the feel of our application. Messages now have a slight delay before appearing, but the system is more robust against connection issues, which is probably worth the trade-off in a real-world app.
+
+Overall, we'd definitely use gRPC again for similar projects. The development speed gains were substantial, and with some tweaking of our message retrieval approach, we could probably address the bandwidth concerns.
+
+---
+
+### Direct Answers to Design Exercise Questions
+
+#### Does the use of gRPC make the application easier or more difficult?
+
+**Mostly easier:**
+- Development time was cut drastically with auto-generated code
+- The `.proto` file was like having instant documentation
+- Connection management headaches disappeared
+- Session handling became much more robust
+
+**A few things were harder:**
+- Debugging binary messages was a pain compared to JSON
+- We had to learn Protobuf syntax and gRPC concepts
+- Understanding the different streaming options took some time
+
+#### What does gRPC do to the size of the data passed?
+
+We were pretty surprised by what we found:
+- We expected gRPC/Protobuf to be smaller than JSON but larger than our custom protocol
+- In reality, our gRPC implementation averaged 534.53 bytes per message, compared to 238.00 bytes for JSON and 53.82 bytes for our custom protocol
+
+The main reasons for this:
+1. Our GetMessages implementation was inefficient, grabbing all messages at once
+2. HTTP/2 headers and gRPC metadata added overhead
+3. Our polling approach meant frequent large responses
+
+For smaller operations like Login and SendMessage, gRPC was more efficient than JSON, which matched our expectations.
+
+#### How does it change the structure of the client and server?
+
+**Client-side:**
+- No more socket management code - big win!
+- Error handling became more structured with proper status codes
+- We switched from receiving pushed updates to asking for updates
+- Session handling became more robust, allowing for reconnections
+
+**Server-side:**
+- Gone were the days of manually parsing JSON
+- We just implemented interfaces defined in our `.proto` file
+- Session management became separate from connection state
+- Thread management was handled automatically by gRPC
+
+#### How does this change the testing of the application?
+
+**Testing got easier:**
+- We could write unit tests with mock services
+- The generated stubs made testing server logic straightforward
+- Request/response formats were validated automatically
+- Components were more isolated, making targeted testing easier
+
+**Some new challenges:**
+- We needed special tools for manual testing
+- Binary formats made visual inspection harder
+- Network simulation became more complex with HTTP/2
+
+### Our Take on gRPC
+
+After this project, here's what we think:
+
+- **Implementation:** So much easier than socket programming!
+- **Debugging:** Definitely harder with binary messages
+- **Efficiency:** Could be efficient, but our implementation choices led to larger messages
+- **Testing:** Definitely easier and more structured
+
+The biggest lesson? Protocol choice matters, but implementation details matter more. Just switching to gRPC didn't automatically make our app more efficient - we would need to rethink our approach to message retrieval to really get the benefits.
 
