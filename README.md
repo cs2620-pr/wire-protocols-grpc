@@ -1,189 +1,105 @@
-# Raft Consensus-based Distributed Server System
+# Raft Chat - A Distributed Messaging App
 
-This project implements a distributed server replication system with leader election using the Raft consensus algorithm. It provides a fault-tolerant key-value store that can withstand multiple node failures.
+**Pranav Ramesh, Mohamed Zidan Cassim**
+
+This is a messaging chat application built on top of the Raft consensus algorithm implementation. It provides a fault-tolerant messaging system that resembles iMessage.
+
+## Features
+
+- **User Registration and Authentication**: Create accounts, login, and logout
+- **Messaging**: Send and receive messages in real-time
+- **Message Management**: Delete your sent messages
+- **User Status**: See which users are online and offline
+- **Unread Messages**: Track unread messages from other users
+- **Account Management**: Delete your account if needed
 
 ## Architecture
 
-The system consists of the following components:
+The application is built using:
+- **Raft Consensus**: For reliable distributed state management
+- **gRPC**: For efficient client-server communication
+- **PyQt6**: For the graphical user interface
 
-1. **Raft Node**: The core component implementing the Raft consensus algorithm
-2. **Server**: Runs a Raft node with gRPC services for communication
-3. **Client**: Provides a simple interface to interact with the distributed system
-4. **Configuration**: Defines the cluster topology and system parameters
+## Prerequisites
 
-### Fault Tolerance
+- Python 3.6+
+- PyQt6
+- gRPC and gRPC tools
 
-This implementation provides 2+ fault tolerance by:
-- Using the Raft consensus algorithm which ensures safety with 2f+1 nodes (where f is the number of tolerable failures)
-- The default configuration has 5 nodes, so the system can tolerate 2 node failures
-- Leader election automatically occurs if the leader fails
-- Log replication ensures all nodes eventually have consistent state
+## Installation
 
-## Project Structure
-
+1. Ensure you have the required dependencies:
 ```
-.
-├── proto/                  # Protocol buffer definitions
-│   └── replication.proto   # gRPC service and message definitions
-├── generated/              # Auto-generated gRPC code (created by generate_proto.sh)
-├── data/                   # Persistent state storage
-├── logs/                   # Server logs
-├── config.json             # Cluster configuration 
-├── raft_node.py            # Raft consensus implementation
-├── server.py               # Server executable
-├── client.py               # Client library and CLI
-├── run_cluster.py          # Script to run multiple nodes
-└── generate_proto.sh       # Script to generate gRPC code
+pip install -r requirements.txt
 ```
 
-## Setup and Installation
-
-1. Ensure you have Python 3.6+ installed
-2. Activate the virtual environment:
-   ```
-   source venv/bin/activate
-   ```
-3. Install dependencies:
-   ```
-   pip install grpcio grpcio-tools
-   ```
-4. Generate the gRPC code:
-   ```
-   ./generate_proto.sh
-   ```
+2. Generate the gRPC code:
+```
+./generate_proto.sh
+```
 
 ## Usage
 
-### Running a Cluster
+### Starting the Server Cluster
 
-USE THIS TO RUN SERVERS:
- 
+First, start the Raft server cluster:
+
 ```
 python run_cluster.py --config config.json --nodes all --no-auto-restart
 ```
 
-IGNORE THE BELOW:
+The system is designed to tolerate multiple node failures. With the default 5-node configuration, it can continue operating with up to 2 nodes down.
 
-Start a cluster of servers:
+### Starting the Raft Monitor
 
-```
-python run_cluster.py --config config.json
-```
+Start the Raft monitor to manage and view the status of the cluster:
 
-To start specific nodes only:
-
-```
-python run_cluster.py --config config.json --nodes 1,2,3
-```
-
-
-### Running the Server Monitor
- 
 ```
 python raft_monitor.py
 ```
 
-### Using the Full Raft Client
+You can see the cluster status and node health in the Raft monitor. This monitor also allows you to test crashing servers and restarting them. Use a Raft monitor on every unique device that is hosting a server and control the servers of an individual host specifically from that device's Raft monitor.
+
+### Running the Chat Client
+
+Launch the chat client:
 
 ```
-python full_raft_client.py
+python chat_launcher.py
 ```
 
-### IGNORE: Using the Client
+### Using the Chat App
 
+1. **Register a New Account**: Click "Register" on the login screen and fill in your details
+2. **Login**: Enter your username and password
+3. **Send Messages**: Select a user from the contact list and type your message
+4. **Delete Messages**: Right-click on your sent messages to delete them
+5. **Logout**: Click the "Logout" button when done
+6. **Delete Account**: Click "Settings" > "Delete Account" if you wish to remove your account
 
-Set a key-value pair:
+## How It Works
 
-```
-python client.py --config config.json --operation set --key mykey --value myvalue
-```
+The chat application leverages the Raft consensus algorithm to ensure:
 
-Get a value:
+1. **Consistency**: All servers have the same view of messages and user accounts
+2. **Fault Tolerance**: The system continues working even if some servers fail
+3. **Persistence**: Messages and account data are preserved even if all servers restart
 
-```
-python client.py --config config.json --operation get --key mykey
-```
+The client communicates with the server cluster through gRPC services defined in the protocol buffer file. The servers use Raft to replicate all state changes, such as sending messages or creating accounts, ensuring that any changes made through one server are propagated to all others.
 
-### Running Individual Nodes
+## Technical Details
 
-Start a single node:
+- Messages are stored in the Raft state machine and replicated across all nodes
+- User authentication is handled through session tokens
+- The UI is built with PyQt6 to provide a modern and responsive interface
+- The client automatically reconnects to alternative servers if the leader fails
 
-```
-python server.py --id 1 --config config.json
-```
+## Troubleshooting
 
-## Configuration
+- **Connection Issues**: Ensure the server cluster is running
+- **Login Problems**: Verify your username and password
+- **Message Delivery Delays**: This can occur if the leader is changing (failover)
 
-The `config.json` file defines the cluster:
+## Engineering Notebook
 
-```json
-{
-    "nodes": [
-        {"id": 1, "host": "localhost", "port": 50051},
-        {"id": 2, "host": "localhost", "port": 50052},
-        {"id": 3, "host": "localhost", "port": 50053},
-        {"id": 4, "host": "localhost", "port": 50054},
-        {"id": 5, "host": "localhost", "port": 50055}
-    ],
-    "election_timeout_ms": {
-        "min": 150,
-        "max": 300
-    },
-    "heartbeat_interval_ms": 50,
-    "data_directory": "./data"
-}
-```
-
-## Key Components of the Implementation
-
-### Raft Consensus Algorithm
-
-The implementation includes:
-- Leader Election: Nodes vote to elect a leader
-- Log Replication: Leader replicates state changes to followers
-- Safety: Ensures all nodes agree on the same sequence of state changes
-
-### gRPC Communication
-
-The system uses gRPC for communication between nodes:
-- `NodeCommunication` service for inter-node communication
-- `DataService` service for client-to-node communication
-
-### Fault Handling
-
-- Automatic leader election when a leader fails
-- Persistence of state to recover from crashes
-- Leader redirections for clients
-- Retry mechanisms for transient failures
-
-## Testing the System
-
-1. Start the cluster:
-   ```
-   python run_cluster.py
-   ```
-
-2. Set some values:
-   ```
-   python client.py --operation set --key color --value blue
-   ```
-
-3. Get values:
-   ```
-   python client.py --operation get --key color
-   ```
-
-4. Test fault tolerance by killing the leader node (the system will elect a new leader)
-
-## Limitations
-
-- This is a simplified implementation of Raft for educational purposes
-- No security features (authentication, encryption)
-- Limited to key-value store operations
-
-## Future Enhancements
-
-- Add cluster membership changes
-- Implement snapshotting for log compaction
-- Add authentication and encryption
-- Improve client interface with more operations
+For detailed information about the system design and implementation, please refer to the [ENGINEERING_NOTEBOOK.md](ENGINEERING_NOTEBOOK.md) file.
