@@ -1,0 +1,327 @@
+syntax = "proto3";
+
+package replication;
+
+// Service for server-to-server communication
+service NodeCommunication {
+  // Request vote from other nodes during an election
+  rpc RequestVote (VoteRequest) returns (VoteResponse);
+  
+  // Send heartbeat/append entries to followers
+  rpc AppendEntries (AppendEntriesRequest) returns (AppendEntriesResponse);
+}
+
+// Service for client-to-server communication
+service DataService {
+  // Set a key-value pair
+  rpc Set (SetRequest) returns (SetResponse);
+  
+  // Get a value for a key
+  rpc Get (GetRequest) returns (GetResponse);
+}
+
+// New service for messaging functionality
+service MessageService {
+  // User registration and account management
+  rpc Register (RegisterRequest) returns (RegisterResponse);
+  rpc Login (LoginRequest) returns (LoginResponse);
+  rpc Logout (LogoutRequest) returns (LogoutResponse);
+  rpc DeleteAccount (DeleteAccountRequest) returns (DeleteAccountResponse);
+  
+  // Message handling
+  rpc SendMessage (SendMessageRequest) returns (SendMessageResponse);
+  rpc GetMessages (GetMessagesRequest) returns (GetMessagesResponse);
+  rpc DeleteMessage (DeleteMessageRequest) returns (DeleteMessageResponse);
+  rpc MarkMessageRead (MarkMessageReadRequest) returns (MarkMessageReadResponse);
+  
+  // User status and management
+  rpc GetAllUsers (GetAllUsersRequest) returns (GetAllUsersResponse);
+  rpc GetOnlineUsers (GetOnlineUsersRequest) returns (GetOnlineUsersResponse);
+  rpc GetUnreadCounts (GetUnreadCountsRequest) returns (GetUnreadCountsResponse);
+}
+
+// Monitoring and health check service
+service MonitoringService {
+  // Check if the node is healthy and serving
+  rpc HealthCheck (HealthCheckRequest) returns (HealthCheckResponse);
+  
+  // Get detailed status of this node
+  rpc NodeStatus (NodeStatusRequest) returns (NodeStatusResponse);
+  
+  // Get status of the entire cluster (only available from leader)
+  rpc ClusterStatus (ClusterStatusRequest) returns (ClusterStatusResponse);
+}
+
+// Request vote message
+message VoteRequest {
+  int32 term = 1;             // Candidate's term
+  int32 candidate_id = 2;     // Candidate requesting vote
+  int32 last_log_index = 3;   // Index of candidate's last log entry
+  int32 last_log_term = 4;    // Term of candidate's last log entry
+}
+
+// Vote response message
+message VoteResponse {
+  int32 term = 1;             // Current term, for candidate to update itself
+  bool vote_granted = 2;      // True means candidate received vote
+}
+
+// Append entries (heartbeat) request
+message AppendEntriesRequest {
+  int32 term = 1;             // Leader's term
+  int32 leader_id = 2;        // So follower can redirect clients
+  int32 prev_log_index = 3;   // Index of log entry immediately preceding new ones
+  int32 prev_log_term = 4;    // Term of prev_log_index entry
+  repeated LogEntry entries = 5;  // Log entries to store (empty for heartbeat)
+  int32 leader_commit = 6;    // Leader's commit index
+}
+
+// Log entry
+message LogEntry {
+  int32 term = 1;             // Term when entry was received by leader
+  int32 index = 2;            // Position in the log
+  bytes data = 3;             // Command data
+}
+
+// Append entries response
+message AppendEntriesResponse {
+  int32 term = 1;             // Current term, for leader to update itself
+  bool success = 2;           // True if follower contained entry matching prev_log_index and prev_log_term
+}
+
+// Set request for key-value storage
+message SetRequest {
+  string key = 1;
+  string value = 2;
+}
+
+// Set response
+message SetResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Get request for key-value storage
+message GetRequest {
+  string key = 1;
+}
+
+// Get response
+message GetResponse {
+  bool success = 1;
+  string value = 2;
+  string message = 3;
+}
+
+// Health check request (empty)
+message HealthCheckRequest {
+}
+
+// Health check response
+message HealthCheckResponse {
+  enum ServingStatus {
+    UNKNOWN = 0;
+    SERVING = 1;
+    NOT_SERVING = 2;
+    SERVICE_UNKNOWN = 3;
+  }
+  ServingStatus status = 1;    // Current serving status
+  string version = 2;          // Version information
+  int64 uptime_seconds = 3;    // How long the service has been running
+}
+
+// Node status request
+message NodeStatusRequest {
+  bool include_log = 1;             // Whether to include log entries in response
+  bool include_state_machine = 2;   // Whether to include state machine data
+}
+
+// Node status response
+message NodeStatusResponse {
+  message PeerStatus {
+    int32 node_id = 1;              // ID of the peer node
+    bool is_connected = 2;          // Whether we're currently connected to this peer
+    int64 last_contact_ms = 3;      // Time since last successful communication (ms)
+    int32 next_index = 4;           // Next log entry to send to that peer
+    int32 match_index = 5;          // Highest log entry known to be replicated on peer
+  }
+  
+  int32 node_id = 1;                // ID of this node
+  int32 state = 2;                  // Current state (0=follower, 1=candidate, 2=leader)
+  int32 current_term = 3;           // Current term
+  int32 current_leader = 4;         // Current leader ID (if known)
+  int32 committed_index = 5;        // Highest log entry known to be committed
+  int32 last_applied = 6;           // Highest log entry applied to state machine
+  int32 log_size = 7;               // Total size of the log
+  repeated PeerStatus peers = 8;    // Status of each peer
+  repeated LogEntry log = 9;        // Log entries (if requested)
+  map<string, string> state_machine = 10;  // State machine data (if requested)
+}
+
+// Cluster status request
+message ClusterStatusRequest {
+  bool include_all_node_details = 1;  // Whether to include detailed status of all nodes
+}
+
+// Cluster status response
+message ClusterStatusResponse {
+  int32 leader_id = 1;              // ID of the current leader
+  int32 current_term = 2;           // Current term
+  int32 total_nodes = 3;            // Total number of nodes in the cluster
+  int32 healthy_nodes = 4;          // Number of healthy nodes
+  repeated NodeStatusResponse node_details = 5;  // Details of all nodes (if requested)
+}
+
+// Message definitions for the messaging application
+
+// User registration
+message RegisterRequest {
+  string username = 1;
+  string password = 2;
+  string display_name = 3;
+}
+
+message RegisterResponse {
+  bool success = 1;
+  string message = 2;
+  string user_id = 3;  // Only set if successful
+}
+
+// User login
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  bool success = 1;
+  string message = 2;
+  string session_token = 3;  // Token for authentication
+  string user_id = 4;        // User ID
+}
+
+// User logout
+message LogoutRequest {
+  string session_token = 1;
+}
+
+message LogoutResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Delete account
+message DeleteAccountRequest {
+  string session_token = 1;
+  string password = 2;  // Confirm with password
+}
+
+message DeleteAccountResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// User message definition
+message Message {
+  string message_id = 1;
+  string sender_id = 2;
+  string receiver_id = 3;
+  string content = 4;
+  int64 timestamp = 5;
+  bool read = 6;
+}
+
+// Send a message
+message SendMessageRequest {
+  string session_token = 1;
+  string receiver_id = 2;
+  string content = 3;
+}
+
+message SendMessageResponse {
+  bool success = 1;
+  string message = 2;
+  string message_id = 3;  // ID of the sent message
+}
+
+// Get messages
+message GetMessagesRequest {
+  string session_token = 1;
+  string other_user_id = 2;  // Get conversation with this user
+  int32 limit = 3;           // Max number of messages to return
+  int64 before_timestamp = 4; // Get messages before this time (0 for most recent)
+}
+
+message GetMessagesResponse {
+  bool success = 1;
+  string message = 2;
+  repeated Message messages = 3;
+}
+
+// Delete a message
+message DeleteMessageRequest {
+  string session_token = 1;
+  string message_id = 2;
+}
+
+message DeleteMessageResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Mark message as read
+message MarkMessageReadRequest {
+  string session_token = 1;
+  string message_id = 2;
+}
+
+message MarkMessageReadResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// User information
+message User {
+  string user_id = 1;
+  string username = 2;
+  string display_name = 3;
+  bool online = 4;
+}
+
+// Get all users
+message GetAllUsersRequest {
+  string session_token = 1;
+}
+
+message GetAllUsersResponse {
+  bool success = 1;
+  string message = 2;
+  repeated User users = 3;
+}
+
+// Get online users
+message GetOnlineUsersRequest {
+  string session_token = 1;
+}
+
+message GetOnlineUsersResponse {
+  bool success = 1;
+  string message = 2;
+  repeated User users = 3;
+}
+
+// Get unread message counts
+message UserUnreadCount {
+  string user_id = 1;
+  int32 count = 2;
+}
+
+message GetUnreadCountsRequest {
+  string session_token = 1;
+}
+
+message GetUnreadCountsResponse {
+  bool success = 1;
+  string message = 2;
+  repeated UserUnreadCount unread_counts = 3;
+}

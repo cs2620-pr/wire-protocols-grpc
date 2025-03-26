@@ -1,16 +1,13 @@
-.venv/
 venv/
-.DS_Store
-*/__pycache__/
-*/.pytest_cache/
-.pytest_cache/
-*/.mypy_cache/
+__pycache__/
 .mypy_cache/
+generated/
 
-# Generated protobuf files
-server/chat/chat_pb2.py
-server/chat/chat_pb2.pyi
-server/chat/chat_pb2_grpc.py
-server/chat/*.py
-server/chat/*.pyi
-server/chat/py.typed
+logs/
+data/
+*.log
+*.pyc
+.DS_Store
+.env
+.vscode/
+.idea/
